@@ -1,4 +1,4 @@
-import { Socials, SupportedConnectors } from '../../config/constants';
+import { Socials, SupportedConnectors, Tokens } from '../../config/constants';
 
 // socials
 import Discord from './social/Discord';
@@ -18,6 +18,10 @@ import Ledger from './connectors/Ledger';
 import Torus from './connectors/Torus';
 import Fortmatic from './connectors/Fortmatic';
 
+// tokens
+import Ether from './tokens/Ether';
+import UsdCoin from './tokens/UsdCoin';
+
 // modal
 export { default as CrossIcon } from './modal/Cross';
 export { default as ConnectWalletIcon } from './modal/ConnectWallet';
@@ -34,11 +38,9 @@ export { default as HomeIcon } from './layout/Home';
 export { default as AboutIcon } from './layout/About';
 export { default as ContactIcon } from './layout/Contact';
 
-type Icons = {
-    [x: string]: JSX.Element;
-};
+type Icons<T extends string | number> = Partial<Record<T, JSX.Element>>;
 
-export const SocialIcons: Icons = {
+export const SocialIcons: Icons<Socials> = {
     [Socials.DISCORD]: Discord(),
     [Socials.TELEGRAM]: Telegram(),
     [Socials.TWITTER]: Twitter(),
@@ -47,7 +49,12 @@ export const SocialIcons: Icons = {
     [Socials.LINKEDIN]: LinkedIn(),
 };
 
-export const WalletConnectorIcons: Icons = {
+export const TokenIcons: Icons<Tokens> = {
+    [Tokens.ETH]: Ether(),
+    [Tokens.USDC]: UsdCoin(),
+};
+
+export const WalletConnectorIcons: Icons<SupportedConnectors> = {
     [SupportedConnectors.METAMASK]: Metamask(),
     [SupportedConnectors.WALLET_CONNECT]: WalletConnect(),
     [SupportedConnectors.COINBASE]: Coinbase(),

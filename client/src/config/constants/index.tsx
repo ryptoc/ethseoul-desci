@@ -17,6 +17,12 @@ export enum SupportedConnectors {
     FORTMATIC = 'Formatic',
 }
 
+export enum Tokens {
+    BTC = 'BTC',
+    ETH = 'ETH',
+    USDC = 'USDC',
+}
+
 export enum Socials {
     DISCORD = 'DISCORD',
     TWITTER = 'TWITTER',

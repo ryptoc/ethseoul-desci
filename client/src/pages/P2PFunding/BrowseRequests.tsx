@@ -18,6 +18,7 @@ const BrowseRequests: React.FC<BrowseRequestsProps> = ({ requests, className }) 
         <section id='browse-requests'>
             <div className={`container ${className ?? ''}`}>
                 <h2>BROWSE REQUESTS</h2>
+                {/* eslint-disable-next-line */}
                 <p>// researchers looking for funding //</p>
                 <div className='request-container'>
                     {requests.map((request, index) => (

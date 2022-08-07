@@ -59,7 +59,11 @@ const ConnectWalletModal: React.FC = () => {
                                         }
                                     >
                                         <div className='icon-container'>
-                                            {WalletConnectorIcons[walletName]}
+                                            {
+                                                WalletConnectorIcons[
+                                                    walletName as SupportedConnectors
+                                                ]
+                                            }
                                         </div>
                                         {walletName}
                                     </button>
