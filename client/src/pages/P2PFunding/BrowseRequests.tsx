@@ -1,3 +1,6 @@
+import { TokenIcons } from '../../assets/icons';
+import { Tokens } from '../../config/constants';
+
 export interface BrowseRequest {
     category: 'Experiment' | 'Sponsor' | 'Partnership' | 'Consultation';
     title: string;
@@ -5,7 +8,7 @@ export interface BrowseRequest {
     minTrustScore: number;
     description: string;
     fundingAmount: number;
-    fundingAsset: string;
+    fundingAsset: Tokens;
 }
 
 interface BrowseRequestsProps {
@@ -42,7 +45,7 @@ const BrowseRequests: React.FC<BrowseRequestsProps> = ({ requests, className }) 
                             </div>
                             <div className='funding-amount'>
                                 {request.fundingAmount}
-                                {request.fundingAsset}
+                                {TokenIcons[request.fundingAsset]}
                             </div>
                         </div>
                     ))}

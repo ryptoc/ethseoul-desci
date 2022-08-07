@@ -97,6 +97,10 @@
                     font-weight: 700;
                     display: flex;
                     align-items: center;
+
+                    svg {
+                        margin-left: 0.5rem;
+                    }
                 }
             }
         }

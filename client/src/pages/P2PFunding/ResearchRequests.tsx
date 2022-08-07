@@ -1,4 +1,5 @@
 import Button from '../../components/Button';
+import { Tokens } from '../../config/constants';
 import BrowseRequests, { BrowseRequest } from './BrowseRequests';
 
 const requests: BrowseRequest[] = [
@@ -10,7 +11,7 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: 'ETH',
+        fundingAsset: Tokens.ETH,
     },
     {
         title: 'Field Research in Mississipi River',
@@ -20,7 +21,7 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: 'USDC',
+        fundingAsset: Tokens.USDC,
     },
     {
         title: 'Field Research in Mississipi River',
@@ -30,7 +31,7 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: 'ETH',
+        fundingAsset: Tokens.ETH,
     },
     {
         title: 'Field Research in Mississipi River',
@@ -40,7 +41,7 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: 'USDC',
+        fundingAsset: Tokens.USDC,
     },
 ];
 

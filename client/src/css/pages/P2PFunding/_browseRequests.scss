@@ -141,6 +141,12 @@
                     font-size: 30px;
                     line-height: 30px;
                     font-weight: 700;
+                    display: flex;
+                    align-items: center;
+
+                    svg {
+                        margin-left: 0.5rem;
+                    }
                 }
             }
         }
