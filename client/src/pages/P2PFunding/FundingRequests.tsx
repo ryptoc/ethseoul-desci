@@ -62,7 +62,9 @@ const FundingRequests = () => {
                             View Previous <br /> Funding Requests
                         </Button>
                         <Button>Top Researchers</Button>
-                        <Button>Submit a Request</Button>
+                        <Button interalLink='/create-request/funding'>
+                            Submit a Request
+                        </Button>
                     </div>
                 </div>
             </section>

@@ -19,7 +19,9 @@ const Hero = () => {
                             Meet our DeScientist <br />
                             Review Committee
                         </Button>
-                        <Button>View Ongoing Projects</Button>
+                        <Button interalLink='/ongoing-requests'>
+                            View Ongoing Projects
+                        </Button>
                     </div>
                 </div>
                 <div className='what-is-desci'>

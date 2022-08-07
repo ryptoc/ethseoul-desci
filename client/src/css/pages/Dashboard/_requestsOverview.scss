@@ -33,7 +33,7 @@
             }
         }
 
-        button {
+        a.custom {
             height: 40px;
             border: 1px solid black;
             border-radius: 8px;
@@ -43,7 +43,7 @@
                 margin-top: auto;
             }
 
-            & + button {
+            & + a {
                 margin-top: 0.5rem;
             }
         }

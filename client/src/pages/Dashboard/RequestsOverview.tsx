@@ -14,8 +14,12 @@ const RequestsOverview = () => {
                         Browse Funding Requests below to view projects which require
                         funding.
                     </p>
-                    <Button variant='tertiary'>Create a Funding Request</Button>
-                    <Button variant='tertiary'>View Funding Requests</Button>
+                    <Button interalLink='/create-request/funding' variant='tertiary'>
+                        Create a Funding Request
+                    </Button>
+                    <Button interalLink='/funding-requests' variant='tertiary'>
+                        View Funding Requests
+                    </Button>
                 </div>
                 <div className='research-requests'>
                     <h2>RESEARCH REQUESTS</h2>
@@ -26,8 +30,12 @@ const RequestsOverview = () => {
                         <br />
                         Browse this section to view requests by Funders.
                     </p>
-                    <Button variant='tertiary'>Create a Research Request</Button>
-                    <Button variant='tertiary'>View Research Requests</Button>
+                    <Button interalLink='/create-request/research' variant='tertiary'>
+                        Create a Research Request
+                    </Button>
+                    <Button interalLink='/research-requests' variant='tertiary'>
+                        View Research Requests
+                    </Button>
                 </div>
             </div>
         </section>
