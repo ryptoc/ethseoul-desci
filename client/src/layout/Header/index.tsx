@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 const navLinks = [
     {
         label: 'P2P FUNDING',
-        to: '/p2p-funding',
+        to: '/funding-requests',
     },
     {
         label: 'MY DASHBOARD',

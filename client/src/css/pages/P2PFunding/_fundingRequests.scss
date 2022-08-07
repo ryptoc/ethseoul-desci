@@ -1,0 +1,41 @@
+#funding-requests {
+    margin-top: 5rem;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+
+        .inner__left {
+            h1 {
+                font-size: 48px;
+                line-height: 48px;
+            }
+
+            p {
+                margin-top: 2rem;
+                font-size: 18px;
+                line-height: 30px;
+                max-width: 600px;
+                font-family: $secondaryFont;
+            }
+        }
+
+        .inner__right {
+            button {
+                font-family: $secondaryFont;
+                font-size: 18px;
+                line-height: 20px;
+                font-weight: 700;
+                width: 224px;
+
+                span:not(.border) {
+                    padding: 0.5rem 1rem;
+                }
+
+                & + button {
+                    margin-top: 1rem;
+                }
+            }
+        }
+    }
+}

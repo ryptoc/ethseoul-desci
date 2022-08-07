@@ -28,8 +28,8 @@ a.custom {
 
     span.border {
         position: absolute;
-        width: calc(100% + 2px);
-        height: calc(100% + 2px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
 
         clip-path: polygon(7% 0%, 100% 1%, 100% 75%, 93% 100%, 0 100%, 0 25%);
     }
