@@ -35,6 +35,12 @@ header {
 
                 &.active {
                     font-weight: 700;
+                    background: linear-gradient(
+                        180deg,
+                        rgba(206, 253, 92, 0) 0%,
+                        #75fb4c 0.01%,
+                        rgba(206, 253, 92, 0) 130.36%
+                    );
                 }
             }
         }
