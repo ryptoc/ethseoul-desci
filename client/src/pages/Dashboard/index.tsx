@@ -1,4 +1,5 @@
 import Benefits from './Benefits';
+import Faq from './Faq';
 import Hero from './Hero';
 import RequestsOverview from './RequestsOverview';
 
@@ -8,6 +9,7 @@ const Dashboard = () => {
             <Hero />
             <Benefits />
             <RequestsOverview />
+            <Faq />
         </>
     );
 };

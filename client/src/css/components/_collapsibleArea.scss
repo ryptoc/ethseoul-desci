@@ -1,0 +1,5 @@
+.collapsible-area {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    will-change: max-height;
+}
