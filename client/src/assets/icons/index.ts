@@ -8,13 +8,6 @@ import Medium from './social/Medium';
 import Gitbook from './social/Gitbook';
 import LinkedIn from './social/LinkedIn';
 
-// modal
-export { default as CrossIcon } from './modal/Cross';
-export { default as ConnectWalletIcon } from './modal/ConnectWallet';
-export { default as ErrorIcon } from './modal/Error';
-export { default as SuccessIcon } from './modal/Success';
-export { default as WarningIcon } from './modal/Warning';
-
 // connectors
 import Metamask from './connectors/Metamask';
 import WalletConnect from './connectors/WalletConnect';
@@ -25,9 +18,21 @@ import Ledger from './connectors/Ledger';
 import Torus from './connectors/Torus';
 import Fortmatic from './connectors/Fortmatic';
 
+// modal
+export { default as CrossIcon } from './modal/Cross';
+export { default as ConnectWalletIcon } from './modal/ConnectWallet';
+export { default as ErrorIcon } from './modal/Error';
+export { default as SuccessIcon } from './modal/Success';
+export { default as WarningIcon } from './modal/Warning';
+
 // general
 export { default as WalletIcon } from './general/Wallet';
 export { default as InfoRoundedIcon } from './general/InfoRounded';
+
+// layout
+export { default as HomeIcon } from './layout/Home';
+export { default as AboutIcon } from './layout/About';
+export { default as ContactIcon } from './layout/Contact';
 
 type Icons = {
     [x: string]: JSX.Element;

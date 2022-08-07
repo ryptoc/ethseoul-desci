@@ -4,6 +4,8 @@
     background: $accentColor;
     grid-row: 1/4;
     position: relative;
+    border-right: 2px solid $primaryColor;
+    box-shadow: 8px 8px 8px rgba(0, 48, 63, 0.1);
 
     .container {
         position: fixed;
@@ -17,6 +19,37 @@
 
         #logo {
             margin-top: 1rem;
+        }
+
+        nav {
+            margin-top: 3.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            a {
+                margin: 0.5rem 0;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        .socials {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+
+            a {
+                margin: 0.5rem 0;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
         }
     }
 }
