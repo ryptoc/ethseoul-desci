@@ -13,8 +13,27 @@
             margin-top: 1rem;
         }
 
+        &.funding {
+            .request-container {
+                background-color: #e0dcc9;
+            }
+
+            .request .request-detail .min-trust-score::after {
+                background-color: #e0dcc9;
+            }
+        }
+
+        &.research {
+            .request-container {
+                background-color: #f9dc5a;
+            }
+
+            .request .request-detail .min-trust-score::after {
+                background-color: #f9dc5a;
+            }
+        }
+
         .request-container {
-            background-color: #e0dcc9;
             width: 95%;
             margin: 1.68rem auto 0 auto;
             padding: 1.68rem;
@@ -101,7 +120,6 @@
                             width: 20px;
                             height: 20px;
                             border-radius: 50%;
-                            background-color: #e0dcc9;
                         }
                     }
                 }

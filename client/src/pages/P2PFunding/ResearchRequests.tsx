@@ -44,13 +44,13 @@ const requests: BrowseRequest[] = [
     },
 ];
 
-const FundingRequests = () => {
+const ResearchRequests = () => {
     return (
         <>
             <section id='p2p-funding-requests'>
                 <div className='container'>
                     <div className='inner__left'>
-                        <h1>Funding Requests</h1>
+                        <h1>Research Requests</h1>
                         <p>
                             Research previously held captive by institutional gatekeeping
                             and narrative control can be unlocked through decentralised
@@ -61,14 +61,14 @@ const FundingRequests = () => {
                         <Button>
                             View Previous <br /> Funding Requests
                         </Button>
-                        <Button>Top Researchers</Button>
+                        <Button>Top Funders</Button>
                         <Button>Submit a Request</Button>
                     </div>
                 </div>
             </section>
-            <BrowseRequests requests={requests} className='funding' />
+            <BrowseRequests requests={requests} className='research' />
         </>
     );
 };
 
-export default FundingRequests;
+export default ResearchRequests;
