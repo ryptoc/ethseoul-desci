@@ -33,6 +33,16 @@
             }
         }
 
+        &.ongoing {
+            .request-container {
+                background-color: #fd8f36;
+            }
+
+            .request .request-detail .min-trust-score::after {
+                background-color: #fd8f36;
+            }
+        }
+
         .request-container {
             width: 95%;
             margin: 1.68rem auto 0 auto;
