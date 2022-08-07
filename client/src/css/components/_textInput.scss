@@ -1,0 +1,12 @@
+input.text-input {
+    height: 64px;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid $primaryColor;
+    border-radius: 4px;
+    font-size: 36px;
+    line-height: 57.6px;
+    color: $accentColor;
+    padding: 0.6rem;
+}

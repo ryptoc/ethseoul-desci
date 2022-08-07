@@ -1,0 +1,41 @@
+@font-face {
+    font-display: swap;
+    font-family: 'SpaceMono';
+    font-weight: 400;
+    src: local('SpaceMono-Regular'),
+        url(../../assets/fonts/SpaceMono-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'SpaceMono';
+    font-weight: 400;
+    font-style: italic;
+    src: local('SpaceMono-Regular'),
+        url(../../assets/fonts/SpaceMono-Italic.ttf) format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'SpaceMono';
+    font-weight: 700;
+    src: local('SpaceMono-Bold'),
+        url(../../assets/fonts/SpaceMono-Bold.ttf) format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'SpaceMono';
+    font-weight: 700;
+    font-style: italic;
+    src: local('SpaceMono-Regular'),
+        url(../../assets/fonts/SpaceMono-BoldItalic.ttf) format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'SpaceGrotesk';
+    font-weight: 400;
+    src: local('SpaceGrotesk-Regular'),
+        url(../../assets/fonts/SpaceGrotesk-Regular.ttf) format('truetype');
+}

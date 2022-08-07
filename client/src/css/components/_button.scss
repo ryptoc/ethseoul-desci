@@ -1,0 +1,44 @@
+button.custom,
+a.custom {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 1rem;
+    font-size: 18px;
+    line-height: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    transition: color 1s ease, background 1s ease, border-color 1s ease;
+    text-align: center;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    @include breakpoint(mobile) {
+        font-size: 14px;
+        line-height: 22.4px;
+    }
+
+    &.button-primary {
+        background-color: $buttonPrimary;
+        color: $accentColor;
+
+        &:disabled {
+            background-color: $buttonPrimaryDisabled;
+            color: #9ba6b4;
+        }
+    }
+
+    &.button-secondary {
+        background-color: $buttonSecondary;
+
+        &:disabled {
+            background-color: $buttonSecondaryDisabled;
+        }
+    }
+}

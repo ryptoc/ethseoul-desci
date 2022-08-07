@@ -1,0 +1,20 @@
+.dropdown-container {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform: scale(0.5);
+    z-index: 10;
+    pointer-events: none;
+    max-height: 200px;
+    overflow: auto;
+
+    &.collapsed {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: all;
+    }
+
+    .dropdown-item {
+        cursor: pointer;
+    }
+}
