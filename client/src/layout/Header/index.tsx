@@ -11,7 +11,7 @@ const navLinks = [
         to: '/',
     },
     {
-        label: 'IPNFGS',
+        label: 'IPNFTS',
         to: '/ipnfts',
     },
 ];

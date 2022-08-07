@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
 import { Tab, TabBody, TabHeader, Tabs } from '../../components/Tabs';
 import NewSubmission from './NewSubmission';
@@ -7,7 +7,7 @@ import SubmissionFiles from './SubmissionFiles';
 import SubmissionLog from './SubmissionLog';
 
 const OnGoingProject = () => {
-    const { projectID } = useParams();
+    // const { projectID } = useParams();
 
     return (
         <section id='ongoing-project'>

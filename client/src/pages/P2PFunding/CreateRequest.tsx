@@ -7,17 +7,17 @@ import { preventOverflow } from '../../web3/utils';
 import { useDropzone, FileWithPath } from 'react-dropzone';
 import Button from '../../components/Button';
 
-type FormDataType = {
-    title: string;
-    description: string;
-    fundingAmount: string;
-    minTrustScore: number | undefined;
-    researchDuration: number | undefined;
-};
+// type FormDataType = {
+//     title: string;
+//     description: string;
+//     fundingAmount: string;
+//     minTrustScore: number | undefined;
+//     researchDuration: number | undefined;
+// };
 
-type TimelineType = {
-    progress: number;
-};
+// type TimelineType = {
+//     progress: number;
+// };
 
 const initialState = {
     title: '',
