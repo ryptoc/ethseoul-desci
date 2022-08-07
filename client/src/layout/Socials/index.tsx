@@ -4,8 +4,10 @@ import { config } from '../../config/config';
 
 const Socials = () => (
     <div className='socials'>
-        {Object.entries(config.socialMedias).map(([name, to]) => (
-            <ExternalLink to={to}>{SocialIcons[name]}</ExternalLink>
+        {Object.entries(config.socialMedias).map(([name, to], index) => (
+            <ExternalLink key={index} to={to}>
+                {SocialIcons[name]}
+            </ExternalLink>
         ))}
     </div>
 );

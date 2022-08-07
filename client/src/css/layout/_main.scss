@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
     grid-template-rows: max-content minmax(0, 1fr) max-content;
+    background: url('../../assets/background/bg_main.png') no-repeat;
 }
 
 main {
