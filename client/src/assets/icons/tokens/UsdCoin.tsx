@@ -6,7 +6,7 @@ const UsdCoin = () => (
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
     >
-        <g clip-path='url(#clip0_2050_32721)'>
+        <g clipPath='url(#clip0_2050_32721)'>
             <mask
                 id='mask0_2050_32721'
                 style={{ maskType: 'alpha' }}
