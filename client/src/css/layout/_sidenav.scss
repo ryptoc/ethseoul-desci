@@ -1,0 +1,22 @@
+.sidenav {
+    width: 81px;
+    height: 100vh;
+    background: $accentColor;
+    grid-row: 1/4;
+    position: relative;
+
+    .container {
+        position: fixed;
+        padding: 0;
+        max-width: unset;
+        height: 100%;
+        width: 81px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #logo {
+            margin-top: 1rem;
+        }
+    }
+}
