@@ -4,7 +4,7 @@ import ExternalLink from '../ExternalLink';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     type?: 'button' | 'submit' | 'reset' | undefined;
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'tertiary';
     className?: string;
     interalLink?: string;
     externalLink?: string;

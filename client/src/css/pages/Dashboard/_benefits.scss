@@ -1,0 +1,36 @@
+#benefits {
+    margin-top: 10rem;
+    .container {
+        h2 {
+            font-size: 48px;
+            line-height: 48px;
+            text-align: center;
+        }
+
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 3.75rem 0;
+            text-align: center;
+
+            .icon-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            h3 {
+                margin: 1.68rem auto;
+                font-size: 30px;
+                line-height: 30px;
+                max-width: 350px;
+            }
+
+            p {
+                max-width: 330px;
+                margin: 0 auto;
+            }
+        }
+    }
+}

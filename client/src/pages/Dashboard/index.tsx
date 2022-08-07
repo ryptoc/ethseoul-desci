@@ -1,8 +1,14 @@
+import Benefits from './Benefits';
+import Hero from './Hero';
+import RequestsOverview from './RequestsOverview';
+
 const Dashboard = () => {
     return (
-        <section id='dashboard'>
-            <div className='container'></div>
-        </section>
+        <>
+            <Hero />
+            <Benefits />
+            <RequestsOverview />
+        </>
     );
 };
 

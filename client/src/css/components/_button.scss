@@ -1,7 +1,7 @@
 button.custom,
 a.custom {
     width: 100%;
-    height: 100%;
+    height: max-content;
     outline: none;
     border: none;
     cursor: pointer;
@@ -68,6 +68,16 @@ a.custom {
 
         &:disabled {
             background-color: $buttonSecondaryDisabled;
+        }
+    }
+
+    &.button-tertiary {
+        span.border {
+            display: none;
+        }
+
+        span:not(.border) {
+            clip-path: unset;
         }
     }
 }
