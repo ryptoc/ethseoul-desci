@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Dashboard from '../pages/Dashboard';
 import IpNfts from '../pages/IPNFTS';
@@ -18,6 +19,7 @@ const AppRoutes = () => (
         <Route path='/create-request/:requestType' element={<CreateRequest />} />
         <Route path='/ongoing-project/:projectID' element={<OnGoingProject />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/about' element={<About />} />
         <Route path='*' element={<Navigate to={'/'} replace />} />
     </Routes>
 );

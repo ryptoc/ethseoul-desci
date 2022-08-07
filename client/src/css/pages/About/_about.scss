@@ -1,0 +1,86 @@
+#about {
+    margin-top: 5rem;
+
+    .container {
+        h1 {
+            font-size: 76px;
+            line-height: 76px;
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.68rem;
+
+            .inner__left {
+                h2 {
+                    font-size: 48px;
+                    line-height: 48px;
+                    max-width: 700px;
+                }
+
+                p {
+                    font-size: 18px;
+                    line-height: 30px;
+                    font-family: $secondaryFont;
+                    max-width: 650px;
+                }
+            }
+
+            .inner__right {
+                margin-left: 3.75rem;
+            }
+        }
+
+        .become-a-contributor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            margin-bottom: -6.75rem;
+
+            &::after {
+                content: '';
+                height: 80%;
+                width: calc(100% + 10rem);
+                left: -5rem;
+                background-color: #a8c0c3;
+                position: absolute;
+            }
+
+            .inner__left {
+                z-index: 3;
+
+                img {
+                    transform: translateY(-15%);
+                }
+            }
+
+            .inner__right {
+                margin-left: 3.75rem;
+                z-index: 2;
+
+                h2 {
+                    font-size: 48px;
+                    line-height: 48px;
+                    max-width: 700px;
+
+                    span {
+                        display: inline-block;
+                        box-shadow: inset 0px -17px 0px 0px #f761cd78;
+                    }
+                }
+
+                p {
+                    font-size: 18px;
+                    line-height: 30px;
+                    font-family: $secondaryFont;
+                    max-width: 650px;
+                    margin-top: 1.68rem;
+                }
+            }
+        }
+    }
+}
