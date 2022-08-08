@@ -13,6 +13,10 @@ a.custom {
     position: relative;
     padding: 0;
 
+    &:hover {
+        transform: scale(0.95);
+    }
+
     span:not(.border) {
         text-align: center;
         transition: color 1s ease, background 1s ease, border-color 1s ease;
