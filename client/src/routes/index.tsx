@@ -3,6 +3,7 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Dashboard from '../pages/Dashboard';
 import IpNfts from '../pages/IPNFTS';
+import IpNftSingular from '../pages/IPNFTS/IpNftSingular';
 import OnGoingProject from '../pages/OnGoingProject';
 import CreateRequest from '../pages/P2PFunding/CreateRequest';
 import FundingRequests from '../pages/P2PFunding/FundingRequests';
@@ -13,6 +14,7 @@ const AppRoutes = () => (
     <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/ipnfts' element={<IpNfts />} />
+        <Route path='/ipnfts/:ipnftID' element={<IpNftSingular />} />
         <Route path='/funding-requests' element={<FundingRequests />} />
         <Route path='/research-requests' element={<ResearchRequests />} />
         <Route path='/ongoing-requests' element={<OnGoingRequests />} />
