@@ -9,6 +9,7 @@ import CreateRequest from '../pages/P2PFunding/CreateRequest';
 import FundingRequests from '../pages/P2PFunding/FundingRequests';
 import OnGoingRequests from '../pages/P2PFunding/OnGoingRequests';
 import ResearchRequests from '../pages/P2PFunding/ResearchRequests';
+import ProposalOutline from '../pages/ProposalOutline';
 
 const AppRoutes = () => (
     <Routes>
@@ -20,6 +21,7 @@ const AppRoutes = () => (
         <Route path='/ongoing-requests' element={<OnGoingRequests />} />
         <Route path='/create-request/:requestType' element={<CreateRequest />} />
         <Route path='/ongoing-project/:projectID' element={<OnGoingProject />} />
+        <Route path='/proposal-outline/:projectID' element={<ProposalOutline />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='*' element={<Navigate to={'/'} replace />} />
