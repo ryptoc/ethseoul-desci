@@ -4,43 +4,33 @@ import BrowseRequests, { BrowseRequest } from './BrowseRequests';
 
 const requests: BrowseRequest[] = [
     {
-        title: 'Field Research in Mississipi River',
+        title: 'Analysis of Water Samples from Mississippi River',
         category: 'Experiment',
         creator: 'jmisslor',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
-        minTrustScore: 15,
-        fundingAmount: 3,
+            'As part of an analysis of the differences in water quality across major global rivers, we are offering a significant bounty to local participants in our study. This bounty specifically pertains to the taking of and subsequent analysis of samples of Mississippi River water over a 6 month period between March 2023 and September 2023...',
+        minTrustScore: 10,
+        fundingAmount: 3000,
         fundingAsset: Tokens.USDC,
     },
     {
-        title: 'Field Research in Mississipi River',
+        title: 'Effects of new Energy Drink on Cognitive Performance',
         category: 'Sponsor',
         creator: 'jmisslor',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
-        minTrustScore: 15,
-        fundingAmount: 3,
+            'Wingspan Energy is a newly conceived energy drink by Joja Corporation. We are offering to sponsor an independent double blind study that evaluates the effects of our energy drink on human cognitive performance compared to  regular caffeinated beverages...',
+        minTrustScore: 20,
+        fundingAmount: 25000,
         fundingAsset: Tokens.USDC,
     },
     {
-        title: 'Field Research in Mississipi River',
+        title: 'Study on behavioral differences across cultures (South Korea)',
         category: 'Partnership',
         creator: 'jmisslor',
         description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.USDC,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        category: 'Consultation',
-        creator: 'jmisslor',
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
-        minTrustScore: 15,
-        fundingAmount: 3,
+            'PhD students from Humboldt University looking to conduct a global study on differences in human behavior in certain societal situations. Seeking partners to conduct our research by replicating our methodology across different cultures. ',
+        minTrustScore: 30,
+        fundingAmount: 30000,
         fundingAsset: Tokens.USDC,
     },
 ];

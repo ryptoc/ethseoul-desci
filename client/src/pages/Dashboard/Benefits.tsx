@@ -16,7 +16,7 @@ const beneftDetails = [
     {
         icon: BenefitIcon_3,
         label: 'Cryptographically Secured Systems',
-        detail: 'Blockchain and Web3 provide an infrastructure that give users confidence to interact asynchronously. ZKP-enabled Trust Score, smart contract-secured Funding Escrow, a DAO-governed Review Committee and IPFS-led ipNFTs allow trustless funding of high-quality research.',
+        detail: 'Users must sign up to the platform using a web3 wallet; this wallet’s profile contains a “reputation score”, secured through ZkProofs.  Combined with smart contract-enabled escrow for funding, users can interact confidently with each other.',
     },
 ];
 
