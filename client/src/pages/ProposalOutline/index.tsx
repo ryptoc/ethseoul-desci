@@ -5,8 +5,17 @@ import ClockIcon from '../../assets/images/clock.png';
 import UsersIcon from '../../assets/images/users.png';
 import Button from '../../components/Button';
 import ProposalDetails from './ProposalDetails';
+import { useContext } from 'react';
+import modalContext from '../../context/modal/modalContext';
 
 const ProposalOutline = () => {
+    const { openModal } = useContext(modalContext);
+
+    const viewOffers = () => openModal('currentOffersModal');
+    const requestToContribute = () => openModal('requestToContributeModal');
+
+    const isFunder = false;
+
     return (
         <section id='proposal-outline'>
             <div className='container'>
@@ -51,7 +60,15 @@ const ProposalOutline = () => {
                         </div>
                     </div>
                     <div className='action-container'>
-                        <Button variant='secondary'>View offers</Button>
+                        {isFunder ? (
+                            <Button variant='secondary' onClick={viewOffers}>
+                                View offers
+                            </Button>
+                        ) : (
+                            <Button variant='secondary' onClick={requestToContribute}>
+                                Request to Contribute
+                            </Button>
+                        )}
                     </div>
                 </div>
                 <hr />
