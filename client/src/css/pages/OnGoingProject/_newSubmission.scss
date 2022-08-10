@@ -1,0 +1,16 @@
+&.new-submission {
+    & > span {
+        font-family: $secondaryFont;
+        font-weight: 600;
+        margin-top: 1rem;
+        display: block;
+    }
+
+    & > button {
+        border-radius: 8px;
+        background-color: white;
+        margin-left: auto;
+        border: 1px solid;
+        margin-top: 1.68rem;
+    }
+}

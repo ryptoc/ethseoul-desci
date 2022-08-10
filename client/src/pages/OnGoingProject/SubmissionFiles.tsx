@@ -26,11 +26,11 @@ const SubmissionFiles = () => {
                 <Button externalLink='/' variant='tertiary'>
                     Link to IPFS CID (Zip File)
                 </Button>
-                <Button externalLink='/' variant='tertiary'>
+                {/* <Button externalLink='/' variant='tertiary'>
                     Download selected files
-                </Button>
+                </Button> */}
                 <Button externalLink='/' variant='tertiary'>
-                    Download all files
+                    Download file
                 </Button>
             </div>
         </div>
