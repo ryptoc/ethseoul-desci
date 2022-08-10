@@ -46,6 +46,13 @@
             a {
                 margin: 0.5rem 0;
                 transition: transform 0.3s ease;
+                width: 25px;
+                height: 25px;
+
+                svg {
+                    width: 100%;
+                    height: auto;
+                }
 
                 &:hover {
                     transform: scale(1.2);

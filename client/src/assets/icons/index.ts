@@ -7,6 +7,8 @@ import Twitter from './social/Twitter';
 import Medium from './social/Medium';
 import Gitbook from './social/Gitbook';
 import LinkedIn from './social/LinkedIn';
+import Filecoin from './social/Filecoin';
+import Polygon from './social/Polygon';
 
 // connectors
 import Metamask from './connectors/Metamask';
@@ -49,6 +51,8 @@ export const SocialIcons: Icons<Socials> = {
     [Socials.MEDIUM]: Medium(),
     [Socials.GITBOOK]: Gitbook(),
     [Socials.LINKEDIN]: LinkedIn(),
+    [Socials.FILECOIN]: Filecoin(),
+    [Socials.POLYGON]: Polygon(),
 };
 
 export const TokenIcons: Icons<Tokens> = {

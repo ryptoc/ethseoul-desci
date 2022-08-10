@@ -15,7 +15,7 @@ const ModalState: React.FC<Props> = ({ children }) => {
         connectWalletModal: false,
         currentOffersModal: false,
         requestToContributeModal: false,
-        createIpNftModal: true,
+        createIpNftModal: false,
     };
 
     const [modal, setModal] = useState(initialState);

@@ -30,6 +30,8 @@ export enum Socials {
     MEDIUM = 'MEDIUM',
     GITBOOK = 'GITBOOK',
     LINKEDIN = 'LINKEDIN',
+    FILECOIN = 'FILECOIN',
+    POLYGON = 'POLYGON',
 }
 
 export enum TimeConversions {
