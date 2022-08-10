@@ -1,0 +1,109 @@
+.modal-overlay {
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: $secondaryFont;
+
+    &.status-modal {
+        z-index: 100001;
+    }
+
+    .modal-content {
+        height: 100%;
+    }
+
+    .blur-background {
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-content-inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        -webkit-overflow-scrolling: touch;
+        outline: none;
+        max-width: 700px;
+        max-height: 90vh;
+        padding: 0;
+        border-radius: 8px;
+
+        @include breakpoint(mobile) {
+            width: 80%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 56px;
+            font-size: 21px;
+            line-height: 26px;
+
+            @include breakpoint(mobile) {
+                font-size: 16px;
+            }
+
+            button {
+                position: absolute;
+                right: 3rem;
+                background-color: transparent;
+                width: max-content;
+
+                @include breakpoint(phablet) {
+                    right: 1rem;
+                }
+            }
+        }
+
+        .content-wrapper {
+            padding: 1.68rem 1.68rem 1.68rem 3rem;
+
+            @include breakpoint(phablet) {
+                padding-left: 1.68rem;
+                padding-right: 0.68rem;
+            }
+
+            .content {
+                padding: 1px 1.68rem 1px 1px;
+                overflow: auto;
+                $customModalHeight: 56px;
+                $contentWrapperPadding: calc(1.68rem * 2);
+                max-height: calc(
+                    90vh - #{$customModalHeight} - #{$contentWrapperPadding}
+                );
+
+                @include breakpoint(phablet) {
+                    padding-right: 1rem;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 7px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 36px;
+                }
+
+                /* Handle */
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 36px;
+                    background: rgba(255, 255, 255, 0.4);
+                }
+            }
+        }
+
+        @import './connectWalletModal';
+        @import './currentOffersModal';
+
+        // status modals
+        @import './status/statusModal';
+    }
+}

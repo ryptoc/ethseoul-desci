@@ -1,0 +1,83 @@
+&.current-offers-modal {
+    max-width: 900px;
+    background-color: #fafafa;
+    border: 1px solid;
+
+    .content {
+        padding: 1.68rem;
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .title {
+                font-size: 30px;
+                line-height: 30px;
+            }
+
+            .note {
+                font-family: $secondaryFont;
+                font-size: 18px;
+                line-height: 30px;
+            }
+        }
+
+        .offers-container {
+            display: grid;
+            grid-template-columns: max-content max-content minmax(0, 1fr) max-content;
+            align-items: center;
+            justify-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.3);
+            border-left: 1px solid rgba(0, 0, 0, 0.3);
+            margin-top: 1rem;
+
+            .row {
+                display: contents;
+                font-size: 16px;
+                line-height: 30px;
+                font-family: $secondaryFont;
+
+                &.header {
+                    font-size: 18px;
+                }
+
+                & > div {
+                    padding: 0.5rem 1rem;
+                    border-right: 1px solid rgba(0, 0, 0, 0.3);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+                    width: 100%;
+                    text-align: center;
+
+                    &:last-of-type {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        button {
+                            span {
+                                height: max-content;
+                            }
+
+                            &:first-of-type {
+                                margin-right: 0.3rem;
+                            }
+
+                            &:last-of-type {
+                                margin-left: 0.3rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & > button {
+            margin-top: 1.68rem;
+            font-family: $secondaryFont;
+            font-size: 18px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+    }
+}

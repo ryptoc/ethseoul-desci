@@ -10,6 +10,7 @@ export type Modals = {
     warningModal: boolean;
     successModal: boolean;
     connectWalletModal: boolean;
+    currentOffersModal: boolean;
 };
 
 export type ModalStateType = {

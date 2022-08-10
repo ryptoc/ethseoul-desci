@@ -1,0 +1,48 @@
+&.status-modal {
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 3rem;
+        text-align: center;
+
+        & > button {
+            background: transparent;
+            position: absolute;
+            top: 1.68rem;
+            right: 1.68rem;
+            border: none;
+            width: max-content;
+            height: max-content;
+            padding: 0.5rem;
+        }
+
+        .icon-container {
+            width: 106px;
+            height: 106px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 30px -1px rgba(0, 0, 0, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.68rem 0 2.5rem 0;
+        }
+
+        .status {
+            font-size: 16px;
+            line-height: 19.5px;
+            font-weight: 600;
+        }
+
+        .message {
+            margin-top: 0.5rem;
+            font-size: 14px;
+            line-height: 17.07px;
+        }
+    }
+
+    @import './waitingModal';
+    @import './errorModal';
+    @import './warningModal';
+    @import './successModal';
+}

@@ -11,11 +11,17 @@ type Props = {
     children: ReactNode;
 };
 
-const CustomModal: React.FC<Props> = (props) => {
+const CustomModal: React.FC<Props> = ({
+    modalName,
+    shouldCloseOnOverlayClick = true,
+    className = '',
+    overlayClassName = '',
+    children,
+}) => {
     const { modal, closeModal } = useContext(modalContext);
 
     const onClose = () => {
-        closeModal(props.modalName);
+        closeModal(modalName);
     };
 
     const otherModalOpen = Object.values(modal).includes(true);
@@ -23,17 +29,23 @@ const CustomModal: React.FC<Props> = (props) => {
     return (
         <ReactModal
             ariaHideApp={false}
-            isOpen={modal[props.modalName]}
-            overlayClassName={`modal-overlay ${props.overlayClassName ?? ''}`}
-            className={`modal-content ${props.className ?? ''}`}
-            shouldCloseOnOverlayClick={props.shouldCloseOnOverlayClick ?? true}
+            isOpen={modal[modalName]}
+            overlayClassName={`modal-overlay ${overlayClassName ?? ''}`}
+            className='modal-content'
+            shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
             onRequestClose={onClose}
             onAfterOpen={() => (document.body.style.overflow = 'hidden')}
             onAfterClose={() =>
                 !otherModalOpen && (document.body.style.overflow = 'unset')
             }
         >
-            {props.children}
+            <div
+                className='blur-background'
+                onClick={shouldCloseOnOverlayClick ? onClose : undefined}
+            />
+            <div className={`modal-content-inner card card-primary ${className ?? ''}`}>
+                {children}
+            </div>
         </ReactModal>
     );
 };

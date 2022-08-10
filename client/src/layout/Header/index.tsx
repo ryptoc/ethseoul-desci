@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../../components/Button';
+import modalContext from '../../context/modal/modalContext';
 
 const navLinks = [
     {
@@ -17,6 +19,8 @@ const navLinks = [
 ];
 
 const Header = () => {
+    const { openModal } = useContext(modalContext);
+
     return (
         <header>
             <div className='container'>
@@ -27,7 +31,12 @@ const Header = () => {
                         </NavLink>
                     ))}
                 </nav>
-                <Button variant='secondary'>Connect wallet ↗</Button>
+                <Button
+                    variant='secondary'
+                    onClick={() => openModal('connectWalletModal')}
+                >
+                    Connect wallet ↗
+                </Button>
             </div>
         </header>
     );

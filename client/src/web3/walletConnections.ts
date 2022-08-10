@@ -1,24 +1,15 @@
 import { SupportedConnectors } from '../config/constants';
-import {
-    fortmatic,
-    injected,
-    ledger,
-    portis,
-    torus,
-    trezor,
-    walletConnect,
-    walletlink,
-} from './connectors';
+import { injected, walletConnect } from './connectors';
 
-const walletConnections: Record<SupportedConnectors, any> = {
+const walletConnections: Partial<Record<SupportedConnectors, any>> = {
     [SupportedConnectors.METAMASK]: injected,
-    [SupportedConnectors.PORTIS]: portis,
+    // [SupportedConnectors.PORTIS]: portis,
     [SupportedConnectors.WALLET_CONNECT]: walletConnect,
-    [SupportedConnectors.LEDGER]: ledger,
-    [SupportedConnectors.COINBASE]: walletlink,
-    [SupportedConnectors.TORUS]: torus,
-    [SupportedConnectors.TREZOR]: trezor,
-    [SupportedConnectors.FORTMATIC]: fortmatic,
+    // [SupportedConnectors.LEDGER]: ledger,
+    // [SupportedConnectors.COINBASE]: walletlink,
+    // [SupportedConnectors.TORUS]: torus,
+    // [SupportedConnectors.TREZOR]: trezor,
+    // [SupportedConnectors.FORTMATIC]: fortmatic,
 };
 
 export const ClosableWallet = [

@@ -28,6 +28,7 @@ export { default as ConnectWalletIcon } from './modal/ConnectWallet';
 export { default as ErrorIcon } from './modal/Error';
 export { default as SuccessIcon } from './modal/Success';
 export { default as WarningIcon } from './modal/Warning';
+export { default as SpinnerIcon } from './modal/Spinner';
 
 // general
 export { default as WalletIcon } from './general/Wallet';

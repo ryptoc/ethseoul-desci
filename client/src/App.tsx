@@ -9,6 +9,7 @@ import Footer from './layout/Footer';
 import Header from './layout/Header';
 import ScrollToTop from './layout/ScrollToTop';
 import Sidebar from './layout/Sidebar';
+import ModalsContainer from './modals/ModalsContainer';
 import AppRoutes from './routes';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
                                 <AppRoutes />
                             </main>
                             <Footer />
+                            <ModalsContainer />
                         </ConnectionState>
                     </Web3ReactProvider>
                 </ErrorState>
