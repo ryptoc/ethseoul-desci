@@ -47,7 +47,7 @@
 
         .submission-details {
             background-color: #efefef;
-            margin-top: 1.68rem;
+            margin-top: 3.75rem;
 
             .tabs-header-container {
                 padding-left: 0.5rem;
@@ -58,14 +58,26 @@
 
                 button {
                     margin-top: 0.5rem;
-                    background-color: #efefef;
+                    background-color: rgba(239, 239, 239, 0.7);
                     font-weight: 700;
                     font-family: $secondaryFont;
                     font-size: 18px;
                     line-height: 30px;
+                    color: rgba(0, 0, 0, 0.5);
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+
+                    & + button {
+                        margin-left: 0.5rem;
+                    }
+
+                    &:hover {
+                        transform: none;
+                    }
 
                     &.active {
                         color: #fd8f36;
+                        background-color: #efefef;
                     }
                 }
             }

@@ -5,6 +5,8 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
     variant?: 'text' | 'number';
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     name: string;
+    min?: number;
+    max?: number;
 }
 
 const TextInput: React.FC<Props> = ({
@@ -12,10 +14,14 @@ const TextInput: React.FC<Props> = ({
     variant = 'text',
     onChange = () => {},
     name,
+    min,
+    max,
     ...rest
 }) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
+
+        if ((min && +value < min) || (max && +value > max)) return;
 
         if (
             (value !== '.' &&
