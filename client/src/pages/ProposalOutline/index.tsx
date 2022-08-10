@@ -23,17 +23,18 @@ const ProposalOutline = () => {
                 <hr />
                 <div className='details'>
                     <div className='title'>
-                        PhD Research of Fungis’ Communication Network
+                        Study on behavioral differences across cultures (South Korea)
                     </div>
                     <div className='status'>
                         <span>Under Negotiation</span>
                     </div>
-                    <div className='creator'>vitalik.eth</div>
+                    <div className='creator'>jmisslor</div>
                     <div className='contributors'>12 contributors</div>
                     <p className='description'>
-                        A P2P funded research grant for a PhD-level Mycologist to
-                        investigate the existence of mycellial intelligence and the
-                        communication networks they utilise.
+                        PhD students from Humboldt University looking to conduct a global
+                        study on differences in human behavior in certain societal
+                        situations. Seeking partners to conduct our research by
+                        replicating our methodology across different cultures.
                     </p>
                     <div className='proposal-meta'>
                         <div className='date'>

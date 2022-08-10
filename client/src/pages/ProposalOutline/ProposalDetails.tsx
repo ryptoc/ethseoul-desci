@@ -1,7 +1,7 @@
 import { Tab, TabBody, TabHeader, Tabs } from '../../components/Tabs';
 import ProposalGallery from './ProposalGallery';
 import ProposalOverview from './ProposalOverview';
-import ProposalResults from './ProposalResults';
+import ProposalMilestone from './ProposalMilestone';
 
 const ProposalDetails = () => {
     return (
@@ -10,13 +10,13 @@ const ProposalDetails = () => {
                 <TabHeader>
                     <Tab>Overview</Tab>
                     <Tab>Gallery</Tab>
-                    <Tab>Results</Tab>
+                    <Tab>Milestone</Tab>
                 </TabHeader>
             </div>
             <TabBody>
                 <ProposalOverview />
                 <ProposalGallery />
-                <ProposalResults />
+                <ProposalMilestone />
             </TabBody>
         </Tabs>
     );
