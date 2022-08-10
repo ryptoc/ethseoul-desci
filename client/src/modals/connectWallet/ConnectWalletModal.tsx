@@ -3,15 +3,11 @@ import { WalletConnectorIcons } from '../../assets/icons';
 import CustomModal from '../../components/CustomModal';
 import { SupportedConnectors } from '../../config/constants';
 import connectionContext from '../../context/connection/connectionContext';
-import modalContext from '../../context/modal/modalContext';
 import walletConnections from '../../web3/walletConnections';
 
 const ConnectWalletModal: React.FC = () => {
-    const { closeModal } = useContext(modalContext);
     const { activeConnector, activateWallet, disconnectWallet } =
         useContext(connectionContext);
-
-    const onClose = () => closeModal('connectWalletModal');
 
     const handleWalletClick = async (
         name: SupportedConnectors,
