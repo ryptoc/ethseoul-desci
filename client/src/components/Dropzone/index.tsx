@@ -9,6 +9,7 @@ interface DropzoneProps {
     title: string;
     description?: string;
     accept?: Accept;
+    multiple?: boolean;
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({
@@ -17,14 +18,17 @@ const Dropzone: React.FC<DropzoneProps> = ({
     title,
     description = `Drag 'n' drop some files here, or click to select files`,
     accept,
+    multiple = true,
 }) => {
     const { setModalData, openModal } = useContext(modalContext);
 
     const onDrop = useCallback(
         (acceptedFiles: File[]) => {
+            if (!multiple && files.length) return;
+
             setFiles([...files, ...acceptedFiles]);
         },
-        [files, setFiles]
+        [files, setFiles, multiple]
     );
 
     const onDropRejected = () => {
@@ -40,6 +44,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
         onDrop,
         accept,
         onDropRejected,
+        multiple,
     });
 
     const removeFile = (file: File) => {
@@ -78,10 +83,10 @@ const Dropzone: React.FC<DropzoneProps> = ({
                     </svg>
 
                     <p>{description}</p>
-                    <span>Upload files</span>
+                    <span>Upload File{multiple && 's'}</span>
                 </div>
                 <aside>
-                    <h4>Files</h4>
+                    <h4>File{multiple && 's'}</h4>
                     <ul>
                         {uploadedFiles.length ? uploadedFiles : 'No files uploaded...'}
                     </ul>

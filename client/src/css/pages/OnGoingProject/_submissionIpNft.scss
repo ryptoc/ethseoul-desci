@@ -1,0 +1,42 @@
+&.submission-ipnft {
+    label {
+        display: flex;
+        flex-direction: column;
+
+        & + label {
+            margin-top: 1.68rem;
+        }
+
+        span {
+            font-family: $secondaryFont;
+            font-size: 16px;
+            line-height: 30px;
+        }
+
+        input {
+            height: 48px;
+            border-radius: 5px;
+            font-family: $secondaryFont;
+            font-size: 32px;
+        }
+
+        textarea {
+            min-height: 130px;
+            height: 130px;
+            max-height: 130px;
+            resize: none;
+            border-radius: 5px;
+            margin-top: 0.3rem;
+            font-size: 24px;
+            padding: 0.5rem;
+        }
+    }
+
+    & > button {
+        margin: 0 auto;
+        border: 1px solid;
+        background-color: white;
+        border-radius: 8px;
+        margin-top: 1.68rem;
+    }
+}

@@ -228,7 +228,7 @@ const CreateRequest = () => {
                             }}
                         />
                         <Dropzone
-                            title='Insert images for proposal gallery here or'
+                            title='Insert images for proposal gallery here:'
                             description='Drag and drop in PNG/JPG Form:'
                             files={images}
                             setFiles={(files) => setImages(files)}
