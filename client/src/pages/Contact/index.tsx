@@ -66,6 +66,7 @@ const Contact = () => {
                                 name='message'
                                 placeholder='Your message...'
                                 required
+                                maxLength={64}
                             />
                         </label>
                         <Button variant='secondary' type='submit' onClick={handleSubmit}>

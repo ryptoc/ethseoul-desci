@@ -123,6 +123,7 @@ const CreateRequest = () => {
                             name='description'
                             value={formData.description}
                             onChange={handleChange}
+                            maxLength={64}
                         />
                     </label>
                     <div className='request-details'>
@@ -197,6 +198,7 @@ const CreateRequest = () => {
                                             onChange={(e) =>
                                                 handleTimelineChange(e, index)
                                             }
+                                            maxLength={64}
                                         />
                                     </label>
                                     <div className='cross-icon'>

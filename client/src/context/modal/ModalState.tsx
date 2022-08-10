@@ -13,7 +13,8 @@ const ModalState: React.FC<Props> = ({ children }) => {
         warningModal: false,
         successModal: false,
         connectWalletModal: false,
-        currentOffersModal: false,
+        currentOffersModal: true,
+        requestToContributeModal: false,
     };
 
     const [modal, setModal] = useState(initialState);

@@ -22,13 +22,11 @@ const CurrentOffersModal = () => {
                 <div className='offers-container'>
                     <div className='row header'>
                         <div>User</div>
-                        <div>Trust Score</div>
                         <div>Comments</div>
                         <div>Action</div>
                     </div>
                     <div className='row'>
                         <div>{formatAccount(AddressZero)}</div>
-                        <div>0</div>
                         <div>abc</div>
                         <div>
                             <Button variant='tertiary'>Accept</Button>

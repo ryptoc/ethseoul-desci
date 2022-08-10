@@ -11,6 +11,7 @@ export type Modals = {
     successModal: boolean;
     connectWalletModal: boolean;
     currentOffersModal: boolean;
+    requestToContributeModal: boolean;
 };
 
 export type ModalStateType = {

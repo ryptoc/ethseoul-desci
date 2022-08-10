@@ -1,4 +1,4 @@
-&.current-offers-modal {
+&.request-to-contribute-modal {
     max-width: 900px;
     background-color: #fafafa;
     border: 1px solid;
@@ -7,25 +7,22 @@
         padding: 1.68rem;
 
         .heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
             .title {
                 font-size: 30px;
                 line-height: 30px;
             }
 
             .note {
+                display: block;
                 font-family: $secondaryFont;
-                font-size: 18px;
+                font-size: 16px;
                 line-height: 30px;
             }
         }
 
-        .offers-container {
+        .milestone-container {
             display: grid;
-            grid-template-columns: max-content minmax(0, 1fr) max-content;
+            grid-template-columns: max-content max-content minmax(0, 1fr) max-content;
             align-items: center;
             justify-items: center;
             border-top: 1px solid rgba(0, 0, 0, 0.3);
@@ -53,31 +50,31 @@
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        height: 100%;
 
-                        button {
-                            span {
-                                height: max-content;
-                            }
-
-                            &:first-of-type {
-                                margin-right: 0.3rem;
-                            }
-
-                            &:last-of-type {
-                                margin-left: 0.3rem;
-                            }
+                        input {
+                            cursor: pointer;
                         }
                     }
                 }
             }
         }
 
-        & > button {
-            margin-top: 1.68rem;
-            font-family: $secondaryFont;
-            font-size: 18px;
-            line-height: 30px;
-            font-weight: 700;
+        .actions-container {
+            display: flex;
+            justify-content: space-between;
+
+            & > button {
+                margin-top: 1.68rem;
+                font-family: $secondaryFont;
+                font-size: 18px;
+                line-height: 30px;
+                font-weight: 700;
+
+                &:last-of-type span:not(.border) {
+                    background-color: $primaryColor;
+                }
+            }
         }
     }
 }
