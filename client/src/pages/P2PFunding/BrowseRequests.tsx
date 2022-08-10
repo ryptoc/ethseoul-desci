@@ -1,4 +1,3 @@
-import { TokenIcons } from '../../assets/icons';
 import { Tokens } from '../../config/constants';
 import RequestCard from './RequestCard';
 

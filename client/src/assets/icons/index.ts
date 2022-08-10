@@ -33,6 +33,7 @@ export { default as SpinnerIcon } from './modal/Spinner';
 // general
 export { default as WalletIcon } from './general/Wallet';
 export { default as InfoRoundedIcon } from './general/InfoRounded';
+export { default as ChevronIcon } from './general/Chevron';
 
 // layout
 export { default as HomeIcon } from './layout/Home';

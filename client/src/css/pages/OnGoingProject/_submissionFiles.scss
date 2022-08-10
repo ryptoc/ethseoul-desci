@@ -1,0 +1,64 @@
+&.submission-files {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 3.75rem;
+
+    .inner__left {
+        & > span {
+            font-family: $secondaryFont;
+            font-size: 18px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+    }
+
+    .inner__right {
+        display: flex;
+        flex-direction: column;
+
+        .select-custom {
+            border: 1px solid black;
+            height: auto;
+            background-color: white;
+
+            button {
+                color: black;
+
+                span:not(.border) {
+                    height: auto;
+                }
+            }
+
+            .chevron-icon path {
+                stroke: black;
+            }
+
+            .dropdown-container {
+                border: 1px solid black;
+
+                .dropdown-item:hover {
+                    background-color: rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+
+        a.custom {
+            border: 1px solid;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            background-color: white;
+
+            &:first-of-type {
+                margin-top: auto;
+            }
+
+            & + a.custom {
+                margin-top: 1rem;
+            }
+
+            span:not(.border) {
+                height: auto;
+            }
+        }
+    }
+}

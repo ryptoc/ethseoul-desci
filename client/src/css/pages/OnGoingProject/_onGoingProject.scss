@@ -18,6 +18,8 @@
 
         .submission-overview {
             display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
             margin-top: 1.68rem;
 
             .inner__left {
@@ -31,15 +33,11 @@
             .inner__right {
                 margin-left: 3.75rem;
 
-                button {
-                    text-decoration: underline;
-                    text-decoration-color: #0068e2;
-                    padding: 0;
+                a.custom {
+                    width: 220px;
 
                     span:not(.border) {
-                        height: auto;
-                        justify-content: flex-start;
-                        color: #0068e2;
+                        padding: 0.5rem 1rem;
                     }
                 }
             }
@@ -67,6 +65,11 @@
                     border-top-left-radius: 8px;
                     border-top-right-radius: 8px;
 
+                    &:last-of-type {
+                        margin-left: auto;
+                        margin-right: 0.5rem;
+                    }
+
                     & + button {
                         margin-left: 0.5rem;
                     }
@@ -84,6 +87,8 @@
 
             .tab-content {
                 padding: 1rem;
+
+                @import './submissionFiles';
             }
         }
     }

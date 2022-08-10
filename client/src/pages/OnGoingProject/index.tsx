@@ -1,13 +1,13 @@
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
 import { Tab, TabBody, TabHeader, Tabs } from '../../components/Tabs';
 import NewSubmission from './NewSubmission';
-import SubmissionComments from './SubmissionComments';
+import SubmissionMilestones from './SubmissionMilestones';
 import SubmissionFiles from './SubmissionFiles';
-import SubmissionLog from './SubmissionLog';
+import SubmissionIpNft from './SubmissionIpNft';
 
 const OnGoingProject = () => {
-    // const { projectID } = useParams();
+    const { projectID } = useParams();
 
     return (
         <section id='ongoing-project'>
@@ -21,23 +21,23 @@ const OnGoingProject = () => {
                         <span>Last Updated: 6 Aug 2022 16:26:29</span>
                     </div>
                     <div className='inner__right'>
-                        <Button variant='tertiary'>View Project Summary</Button>
-                        <Button variant='tertiary'>Edit Project Summary</Button>
-                        <Button variant='tertiary'>Milestone Details</Button>
+                        <Button interalLink={`/proposal-outline/${projectID}`}>
+                            View Proposal
+                        </Button>
                     </div>
                 </div>
                 <div className='submission-details'>
                     <Tabs>
                         <TabHeader>
                             <Tab>Submission Files</Tab>
-                            <Tab>Comments</Tab>
-                            <Tab>Log</Tab>
+                            <Tab>Milestones</Tab>
+                            <Tab>ipNFT</Tab>
                             <Tab>New Submission</Tab>
                         </TabHeader>
                         <TabBody>
                             <SubmissionFiles />
-                            <SubmissionComments />
-                            <SubmissionLog />
+                            <SubmissionMilestones />
+                            <SubmissionIpNft />
                             <NewSubmission />
                         </TabBody>
                     </Tabs>

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useContext } from 'react';
 import { Accept, FileWithPath, useDropzone } from 'react-dropzone';
 import { CrossIcon } from '../../assets/icons';
 import modalContext from '../../context/modal/modalContext';
@@ -24,7 +24,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
         (acceptedFiles: File[]) => {
             setFiles([...files, ...acceptedFiles]);
         },
-        [files]
+        [files, setFiles]
     );
 
     const onDropRejected = () => {

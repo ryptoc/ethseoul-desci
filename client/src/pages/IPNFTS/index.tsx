@@ -1,9 +1,7 @@
 import moment from 'moment';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TokenIcons } from '../../assets/icons';
 import IntellectualProperty from '../../assets/images/intellectual_property.png';
-import { Tokens } from '../../config/constants';
 
 type NftsType = {
     title: string;
