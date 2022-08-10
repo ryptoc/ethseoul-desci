@@ -1,11 +1,13 @@
-import React, { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { FormEvent, useContext, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CrossIcon } from '../../assets/icons';
 import TextInput from '../../components/TextInput';
-import { preventOverflow } from '../../web3/utils';
+import { preventOverflow, sleep } from '../../web3/utils';
 import Button from '../../components/Button';
 import Timeline from '../../components/Timeline';
 import Dropzone from '../../components/Dropzone';
+import modalContext from '../../context/modal/modalContext';
+// import useUserBalance from '../../hooks/web3/useUserBalance';
 
 type FormDataType = {
     title: string;
@@ -40,11 +42,98 @@ const CreateRequest = () => {
 
     const { requestType } = useParams();
 
+    const { openModal, closeModal, setModalData } = useContext(modalContext);
+
     const [pdfs, setPdfs] = useState<File[]>([]);
     const [images, setImages] = useState<File[]>([]);
 
-    const handleSubmit = (e: FormEvent) => {
+    const navigate = useNavigate();
+
+    // const userBalance = useUserBalance('0x566368d78DBdEc50F04b588E152dE3cEC0d5889f');
+
+    const validate = () => {
+        if (!pdfs.length) {
+            openModal('warningModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Notice',
+                message: 'Proposal PDF is required',
+            }));
+            return false;
+        }
+
+        if (!images.length) {
+            openModal('warningModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Notice',
+                message: 'Proposal Gallery is required',
+            }));
+            return false;
+        }
+
+        const totalAmountRequired = formData.timeline.reduce(
+            (total, { releaseAmount }) => (total += +releaseAmount),
+            0
+        );
+
+        if (totalAmountRequired <= 0) {
+            openModal('warningModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Notice',
+                message: 'USDC to be released cannot be zero',
+            }));
+            return false;
+        }
+
+        // if (
+        //     userBalance &&
+        //     toBigNumber(totalAmountRequired.toString(), 6).gt(userBalance)
+        // ) {
+        //     openModal('warningModal');
+        //     setModalData((prev) => ({
+        //         ...prev,
+        //         status: 'Notice',
+        //         message: 'Insufficient USDC',
+        //     }));
+        //     return false;
+        // }
+
+        return true;
+    };
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+
+        if (validate()) {
+            openModal('waitingModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Please wait as your IPFS storage is being created',
+            }));
+
+            await sleep(3000);
+
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Please wait as your transaction is being confirmed',
+            }));
+
+            await sleep(2000);
+
+            closeModal('waitingModal');
+
+            openModal('successModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Success!',
+                message:
+                    'Your proposal has been submitted. Registered researchers can now apply to contribute. Review applications on the Proposal page.',
+            }));
+
+            navigate('/ongoing-requests');
+        }
     };
 
     const handleChange = (
@@ -115,6 +204,7 @@ const CreateRequest = () => {
                             name='title'
                             value={formData.title}
                             onChange={handleChange}
+                            required
                         />
                     </label>
                     <label>
@@ -124,6 +214,7 @@ const CreateRequest = () => {
                             value={formData.description}
                             onChange={handleChange}
                             maxLength={64}
+                            required
                         />
                     </label>
                     <div className='request-details'>
@@ -135,6 +226,7 @@ const CreateRequest = () => {
                                     name='minTrustScore'
                                     value={formData.minTrustScore}
                                     onChange={handleChange}
+                                    required
                                 />
                             </label>
                         </div>
@@ -146,6 +238,7 @@ const CreateRequest = () => {
                                     name='researchDuration'
                                     value={formData.researchDuration}
                                     onChange={handleChange}
+                                    required
                                 />
                             </label>
                         </div>
@@ -177,6 +270,7 @@ const CreateRequest = () => {
                                                 handleTimelineChange(e, index)
                                             }
                                             readOnly={index === 0}
+                                            required
                                         />
                                     </label>
                                     <label className='release-amount'>
@@ -188,6 +282,7 @@ const CreateRequest = () => {
                                             onChange={(e) =>
                                                 handleTimelineChange(e, index)
                                             }
+                                            required
                                         />
                                     </label>
                                     <label className='comments'>
@@ -199,6 +294,7 @@ const CreateRequest = () => {
                                                 handleTimelineChange(e, index)
                                             }
                                             maxLength={64}
+                                            required
                                         />
                                     </label>
                                     <div className='cross-icon'>
@@ -228,6 +324,7 @@ const CreateRequest = () => {
                             accept={{
                                 'application/pdf': ['.pdf'],
                             }}
+                            multiple={false}
                         />
                         <Dropzone
                             title='Insert images for proposal gallery here:'
@@ -240,9 +337,7 @@ const CreateRequest = () => {
                         />
                     </div>
                     <div className='action-container'>
-                        <Button type='submit' onClick={handleSubmit}>
-                            Submit
-                        </Button>
+                        <Button type='submit'>Submit</Button>
                     </div>
                 </form>
             </div>
