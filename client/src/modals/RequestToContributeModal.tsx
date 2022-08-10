@@ -1,9 +1,7 @@
-import { AddressZero } from '@ethersproject/constants';
 import { useContext } from 'react';
 import Button from '../components/Button';
 import CustomModal from '../components/CustomModal';
 import modalContext from '../context/modal/modalContext';
-import { formatAccount } from '../helpers/formats';
 
 const RequestToContributeModal = () => {
     const { closeModal } = useContext(modalContext);
