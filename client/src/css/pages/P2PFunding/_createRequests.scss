@@ -2,6 +2,11 @@
     margin-top: 5rem;
 
     .container {
+        input,
+        textarea {
+            background-color: transparent !important;
+        }
+
         h1 {
             font-size: 48px;
             line-height: 48px;
@@ -60,28 +65,21 @@
 
             .request-details {
                 display: grid;
-                grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
                 gap: 2.5rem;
                 margin-top: 1.68rem;
 
-                .funding-amount .amount {
-                    display: flex;
-                    align-items: flex-end;
+                .research-duration {
+                    position: relative;
 
-                    svg {
-                        width: 58px;
-                        height: auto;
+                    &::after {
+                        content: 'month(s)';
+                        position: absolute;
+                        right: 0.5rem;
+                        bottom: 0.5rem;
                     }
-
-                    span {
-                        font-style: italic;
-                        font-size: 16px;
-                        line-height: 30px;
-                    }
-
                     input {
-                        margin-left: 1rem;
-                        font-size: 48px;
+                        padding-right: 1.68rem;
                     }
                 }
             }
@@ -238,37 +236,18 @@
                 }
             }
 
-            .dropzone {
-                margin-top: 1.68rem;
-                border: 1px dashed;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                border-radius: 5px;
-
-                p {
-                    margin-top: 2.5rem;
-                }
-
-                aside {
-                    width: 95%;
-                }
+            .proposal-file-uploads {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 0.4fr);
+                gap: 3.75rem;
             }
 
             .action-container {
-                width: 95%;
+                width: 100%;
                 margin: 3.75rem auto 0 auto;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
                 align-items: center;
-
-                button {
-                    height: 40px;
-                    border: 1px solid black;
-                    border-radius: 8px;
-                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                }
             }
         }
     }

@@ -11,7 +11,7 @@ const initialState = {
 const Contact = () => {
     const [formData, setFormData] = useState(initialState);
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
     };
 
@@ -68,7 +68,7 @@ const Contact = () => {
                                 required
                             />
                         </label>
-                        <Button variant='secondary' type='submit'>
+                        <Button variant='secondary' type='submit' onClick={handleSubmit}>
                             Submit
                         </Button>
                     </form>

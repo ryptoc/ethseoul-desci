@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CrossIcon, TokenIcons } from '../../assets/icons';
+import { CrossIcon } from '../../assets/icons';
 import TextInput from '../../components/TextInput';
-import { Tokens } from '../../config/constants';
 import { preventOverflow } from '../../web3/utils';
-import { useDropzone, FileWithPath } from 'react-dropzone';
 import Button from '../../components/Button';
 import Timeline from '../../components/Timeline';
+import Dropzone from '../../components/Dropzone';
 
 type FormDataType = {
     title: string;
     description: string;
-    fundingAmount: string;
     minTrustScore: string;
     researchDuration: string;
     timeline: TimelineType[];
@@ -26,7 +24,6 @@ type TimelineType = {
 const initialState = {
     title: '',
     description: '',
-    fundingAmount: '',
     minTrustScore: '',
     researchDuration: '',
     timeline: [
@@ -41,11 +38,12 @@ const initialState = {
 const CreateRequest = () => {
     const [formData, setFormData] = useState<FormDataType>(initialState);
 
-    const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
-
     const { requestType } = useParams();
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const [pdfs, setPdfs] = useState<File[]>([]);
+    const [images, setImages] = useState<File[]>([]);
+
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
     };
 
@@ -97,12 +95,6 @@ const CreateRequest = () => {
         }));
     };
 
-    const files = acceptedFiles.map((file: FileWithPath) => (
-        <li key={file.path}>
-            {file.path} - {file.size} bytes
-        </li>
-    ));
-
     return (
         <section id='create-request'>
             <div className='container'>
@@ -134,21 +126,6 @@ const CreateRequest = () => {
                         />
                     </label>
                     <div className='request-details'>
-                        <div className='funding-amount'>
-                            <label>
-                                <span>Funding Amount</span>
-                                <div className='amount'>
-                                    {TokenIcons[Tokens.USDC]}
-                                    <span>USDC</span>
-                                    <TextInput
-                                        variant='number'
-                                        name='fundingAmount'
-                                        value={formData.fundingAmount}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                            </label>
-                        </div>
                         <div className='min-trust-score'>
                             <label>
                                 <span>Minimum Trust Score</span>
@@ -173,7 +150,14 @@ const CreateRequest = () => {
                         </div>
                     </div>
                     <div className='milestone-timeline'>
-                        <span>Milestone Timeline</span>
+                        <span>
+                            Milestone Timeline (Required USDC :{' '}
+                            {formData.timeline.reduce(
+                                (total, timeline) => (total += +timeline.releaseAmount),
+                                0
+                            )}
+                            )
+                        </span>
                         <div className='timelines'>
                             {formData.timeline.map((data, index) => (
                                 <div
@@ -233,17 +217,28 @@ const CreateRequest = () => {
                         <span>Your Proposed Timeline</span>
                         <Timeline data={formData.timeline} />
                     </div>
-                    <div {...getRootProps({ className: 'dropzone' })}>
-                        <input {...getInputProps()} />
-                        <p>Drag 'n' drop some files here, or click to select files</p>
-                        <aside>
-                            <h4>Files</h4>
-                            <ul>{files.length ? files : 'No files uploaded...'}</ul>
-                        </aside>
+                    <div className='proposal-file-uploads'>
+                        <Dropzone
+                            title='Insert detailed proposal here:'
+                            description='Drag and drop in PDF Form or'
+                            files={pdfs}
+                            setFiles={(files) => setPdfs(files)}
+                            accept={{
+                                'application/pdf': ['.pdf'],
+                            }}
+                        />
+                        <Dropzone
+                            title='Insert images for proposal gallery here or'
+                            description='Drag and drop in PNG/JPG Form:'
+                            files={images}
+                            setFiles={(files) => setImages(files)}
+                            accept={{
+                                'image/png': ['.png', '.jpeg', '.jpg'],
+                            }}
+                        />
                     </div>
                     <div className='action-container'>
-                        <Button variant='tertiary'>Cancel</Button>
-                        <Button type='submit' variant='tertiary'>
+                        <Button type='submit' onClick={handleSubmit}>
                             Submit
                         </Button>
                     </div>
