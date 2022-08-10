@@ -11,7 +11,7 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        fundingAsset: Tokens.USDC,
     },
     {
         title: 'Field Research in Mississipi River',
@@ -31,7 +31,7 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        fundingAsset: Tokens.USDC,
     },
     {
         title: 'Field Research in Mississipi River',
@@ -59,6 +59,9 @@ const FundingRequests = () => {
                         </p>
                     </div>
                     <div className='inner__right'>
+                        <Button interalLink='/research-requests'>
+                            View Research Requests
+                        </Button>
                         <Button interalLink='/create-request/funding'>
                             Submit a Request
                         </Button>

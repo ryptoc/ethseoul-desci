@@ -59,10 +59,9 @@ const ResearchRequests = () => {
                         </p>
                     </div>
                     <div className='inner__right'>
-                        <Button>
-                            View Previous <br /> Funding Requests
+                        <Button interalLink='/funding-requests'>
+                            View Funding Requests
                         </Button>
-                        <Button>Top Funders</Button>
                         <Button interalLink='/create-request/research'>
                             Submit a Request
                         </Button>

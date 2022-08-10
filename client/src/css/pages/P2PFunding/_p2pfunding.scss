@@ -21,7 +21,8 @@
         }
 
         .inner__right {
-            a.custom {
+            a.custom,
+            button.custom {
                 font-family: $secondaryFont;
                 font-size: 18px;
                 line-height: 20px;
@@ -33,6 +34,109 @@
                     padding: 0.5rem 1rem;
                 }
             }
+        }
+    }
+}
+
+.request-card {
+    background-color: white;
+    padding: 0 1rem;
+    position: relative;
+    display: block;
+
+    & + .request-card {
+        margin-top: 1rem;
+    }
+
+    .request-category {
+        font-style: italic;
+        font-size: 16px;
+        line-height: 25px;
+
+        &.experiment {
+            box-shadow: inset 0px 13px 0px $primaryColor;
+        }
+
+        &.sponsor {
+            box-shadow: inset 0px 13px 0px #f7ff57;
+        }
+
+        &.partnership {
+            box-shadow: inset 0px 13px 0px #cefd5c;
+        }
+
+        &.consultation {
+            box-shadow: inset 0px 13px 0px #fd8f36;
+        }
+    }
+
+    .request-detail {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin-top: 1.68rem;
+        padding-bottom: 2.5rem;
+
+        .title {
+            font-size: 18px;
+            line-height: 30px;
+            font-family: $secondaryFont;
+            font-weight: 700;
+        }
+
+        .creator {
+            font-style: italic;
+            font-size: 16px;
+            line-height: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 30px;
+            font-family: $secondaryFont;
+            margin-left: 3.75rem;
+        }
+
+        .min-trust-score {
+            margin-top: 1.68rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 2.5rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                background-color: $accentColor;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 4px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .funding-amount {
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        font-size: 30px;
+        line-height: 30px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+
+        svg {
+            margin-left: 0.5rem;
         }
     }
 }

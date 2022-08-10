@@ -1,5 +1,6 @@
 import { TokenIcons } from '../../assets/icons';
 import { Tokens } from '../../config/constants';
+import RequestCard from './RequestCard';
 
 export interface BrowseRequest {
     category: 'Experiment' | 'Sponsor' | 'Partnership' | 'Consultation';
@@ -25,29 +26,11 @@ const BrowseRequests: React.FC<BrowseRequestsProps> = ({ requests, className }) 
                 <p>// researchers looking for funding //</p>
                 <div className='request-container'>
                     {requests.map((request, index) => (
-                        <div key={index} className='request'>
-                            <span
-                                className={`request-category ${request.category.toLowerCase()}`}
-                            >
-                                {request.category}
-                            </span>
-                            <div className='request-detail'>
-                                <div className='inner__left'>
-                                    <div className='title'>{request.title}</div>
-                                    <div className='creator'>{request.creator}</div>
-                                    <div className='min-trust-score'>
-                                        ({request.minTrustScore})
-                                    </div>
-                                </div>
-                                <div className='inner__right'>
-                                    <p>{request.description}</p>
-                                </div>
-                            </div>
-                            <div className='funding-amount'>
-                                {request.fundingAmount}
-                                {TokenIcons[request.fundingAsset]}
-                            </div>
-                        </div>
+                        <RequestCard
+                            to='/proposal-outline/2'
+                            request={request}
+                            key={index}
+                        />
                     ))}
                 </div>
             </div>

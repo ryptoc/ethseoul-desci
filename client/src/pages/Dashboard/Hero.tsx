@@ -15,12 +15,8 @@ const Hero = () => {
                         </p>
                     </div>
                     <div className='inner__right'>
-                        <Button>
-                            Meet our DeScientist <br />
-                            Review Committee
-                        </Button>
                         <Button interalLink='/ongoing-requests'>
-                            View Ongoing Projects
+                            My Ongoing Projects
                         </Button>
                     </div>
                 </div>

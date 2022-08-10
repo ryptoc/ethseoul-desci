@@ -22,13 +22,13 @@
             }
 
             .inner__right {
-                button {
+                a.custom {
                     font-family: $secondaryFont;
                     font-size: 18px;
                     line-height: 20px;
                     font-weight: 700;
 
-                    span {
+                    span:not(.border) {
                         padding: 0.5rem 1rem;
                     }
                 }

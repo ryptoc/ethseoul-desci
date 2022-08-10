@@ -1,18 +1,8 @@
-import Button from '../../components/Button';
 import { Tokens } from '../../config/constants';
-import BrowseRequests, { BrowseRequest } from './BrowseRequests';
+import { BrowseRequest } from './BrowseRequests';
+import RequestCard from './RequestCard';
 
-const requests: BrowseRequest[] = [
-    {
-        title: 'Field Research in Mississipi River',
-        category: 'Experiment',
-        creator: 'jmisslor',
-        description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
-    },
+const fundingRequests: BrowseRequest[] = [
     {
         title: 'Field Research in Mississipi River',
         category: 'Sponsor',
@@ -31,11 +21,14 @@ const requests: BrowseRequest[] = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
         minTrustScore: 15,
         fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        fundingAsset: Tokens.USDC,
     },
+];
+
+const researchRequests: BrowseRequest[] = [
     {
         title: 'Field Research in Mississipi River',
-        category: 'Consultation',
+        category: 'Experiment',
         creator: 'jmisslor',
         description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur, facilisis condimentum nunc.',
@@ -58,15 +51,36 @@ const OnGoingRequests = () => {
                             funding streams. Fund future-forward research here!
                         </p>
                     </div>
+                </div>
+            </section>
+            <section id='ongoing-requests'>
+                <div className='container'>
+                    <div className='inner__left'>
+                        <h2>Funding Requests</h2>
+                        <div className='funding-requests'>
+                            {fundingRequests.map((request, index) => (
+                                <RequestCard
+                                    to='/ongoing-project/2'
+                                    request={request}
+                                    key={index}
+                                />
+                            ))}
+                        </div>
+                    </div>
                     <div className='inner__right'>
-                        <Button>
-                            View Past <br /> Completed Requests
-                        </Button>
-                        <Button>Top Researchers</Button>
+                        <h2>Research Requests</h2>
+                        <div className='research-requests'>
+                            {researchRequests.map((request, index) => (
+                                <RequestCard
+                                    to='/ongoing-project/2'
+                                    request={request}
+                                    key={index}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
-            <BrowseRequests requests={requests} className='ongoing' />
         </>
     );
 };
