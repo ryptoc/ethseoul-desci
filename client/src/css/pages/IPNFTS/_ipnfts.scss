@@ -41,17 +41,35 @@
             .card {
                 background: #fafdfd;
                 box-shadow: 16px 16px 24px rgba(0, 48, 63, 0.08);
-                padding: 2rem 1.68rem;
+                padding: 0 1.68rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 position: relative;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.15);
+                }
+
+                .category {
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                    font-weight: 700;
+                    margin-top: 0.5rem;
+
+                    span {
+                        font-weight: 400;
+                    }
+                }
 
                 .title {
                     font-family: $secondaryFont;
                     font-size: 18px;
                     line-height: 30px;
                     font-weight: 700;
+                    margin-top: 1rem;
                 }
 
                 .creator {
@@ -60,47 +78,12 @@
                     line-height: 30px;
                 }
 
-                .min-trust-score {
-                    margin-top: 1.68rem;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    padding-left: 2.5rem;
-
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        left: 0;
-                        width: 28px;
-                        height: 28px;
-                        border-radius: 50%;
-                        background-color: $accentColor;
-                    }
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        left: 4px;
-                        width: 20px;
-                        height: 20px;
-                        border-radius: 50%;
-                        background-color: $primaryColor;
-                    }
-                }
-
-                .funding-amount {
-                    position: absolute;
-                    right: 1rem;
-                    bottom: 1rem;
-                    font-size: 30px;
+                .mint-date {
+                    margin-top: 2.5rem;
+                    margin-bottom: 1rem;
+                    font-family: $secondaryFont;
+                    font-size: 18px;
                     line-height: 30px;
-                    font-weight: 700;
-                    display: flex;
-                    align-items: center;
-
-                    svg {
-                        margin-left: 0.5rem;
-                    }
                 }
             }
         }

@@ -25,6 +25,14 @@
 
             & > div {
                 margin-top: 1.68rem;
+
+                .request-card {
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
             }
         }
 

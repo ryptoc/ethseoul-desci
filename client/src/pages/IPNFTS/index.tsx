@@ -1,4 +1,6 @@
+import moment from 'moment';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { TokenIcons } from '../../assets/icons';
 import IntellectualProperty from '../../assets/images/intellectual_property.png';
 import { Tokens } from '../../config/constants';
@@ -6,95 +8,82 @@ import { Tokens } from '../../config/constants';
 type NftsType = {
     title: string;
     creator: string;
-    minTrustScore: number;
-    fundingAmount: number;
-    fundingAsset: Tokens;
+    category: string;
+    mintDate: number;
 };
 
 const nfts: NftsType[] = [
     {
         title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River2',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River3',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River4',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River5',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River6',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River7',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River8',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River9',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River10',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River11',
+        title: 'Field Research in Mississipi River',
         creator: 'jmisslor',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        category: 'Geography',
+        mintDate: 1660156446,
     },
     {
-        title: 'Field Research in Mississipi River12',
-        creator: 'jmisslorabang',
-        minTrustScore: 15,
-        fundingAmount: 3,
-        fundingAsset: Tokens.ETH,
+        title: 'Field Research in Mississipi River',
+        creator: 'jmisslor',
+        category: 'Geography',
+        mintDate: 1660156446,
     },
 ];
 
@@ -138,17 +127,17 @@ const IpNfts = () => {
                                 data.creator.includes(searchTerm)
                         )
                         .map((nft, index) => (
-                            <div key={index} className='card'>
+                            <Link to={'/ipnfts/2'} key={index} className='card'>
+                                <div className='category'>
+                                    Category: <span>{nft.category}</span>
+                                </div>
                                 <div className='title'>{nft.title}</div>
                                 <div className='creator'>{nft.creator}</div>
-                                <div className='min-trust-score'>
-                                    ({nft.minTrustScore})
+                                <div className='mint-date'>
+                                    Mint Date:{' '}
+                                    {moment.unix(nft.mintDate).format('DD/MM/YYYY')}
                                 </div>
-                                <div className='funding-amount'>
-                                    {nft.fundingAmount}
-                                    {TokenIcons[nft.fundingAsset]}
-                                </div>
-                            </div>
+                            </Link>
                         ))}
                 </div>
             </div>

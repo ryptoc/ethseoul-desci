@@ -11,7 +11,7 @@ const IpNftSingular = () => {
                 <div className='overview'>
                     <div className='inner__left'></div>
                     <div className='inner__right'>
-                        <span>Network: Ethereum</span>
+                        <span>Network: Polygon Testnet</span>
                         <h1>Microbes</h1>
                         <p>
                             Heterogenous mix of manually manipulated and generative art
