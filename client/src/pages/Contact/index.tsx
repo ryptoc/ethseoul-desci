@@ -30,7 +30,7 @@ const Contact = () => {
                     <h1>Contact</h1>
                     <p>
                         For any enquiries, please fill out the contact form and the
-                        DeSciWorld team will get back to you.
+                        DeSciConnect team will get back to you.
                     </p>
                     <JoinDiscord />
                 </div>

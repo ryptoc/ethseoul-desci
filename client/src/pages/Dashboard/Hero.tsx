@@ -10,7 +10,7 @@ const Hero = () => {
                         <p>
                             Decentralised, Peer-to-Peer funding can unlock research
                             opportunities previously closed to the majority. With
-                            DeSciWorld, researchers can apply for funding or take on the
+                            DeSciConnect, researchers can apply for funding or take on the
                             requests of others.
                         </p>
                     </div>

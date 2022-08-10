@@ -91,9 +91,6 @@ const CreateRequest = () => {
     };
 
     const removeTimeline = (timelineIndex: number) => {
-        console.log(timelineIndex);
-        console.log(formData.timeline);
-
         setFormData((prev) => ({
             ...prev,
             timeline: prev.timeline.filter((_, index) => index !== timelineIndex),

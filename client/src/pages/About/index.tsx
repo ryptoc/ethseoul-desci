@@ -9,9 +9,9 @@ const About = () => (
                 <div className='inner__left'>
                     <h2>Decentralised, united and passionate.</h2>
                     <p>
-                        DeSciWorld is being built by contributors: researchers; designers;
-                        businesspeople; creators. Situated around the world, we bring
-                        diverse views and people together to unite with the goal of
+                        DeSciConnect is being built by contributors: researchers;
+                        designers; businesspeople; creators. Situated around the world, we
+                        bring diverse views and people together to unite with the goal of
                         Decentralising Science.
                     </p>
                 </div>
@@ -28,7 +28,7 @@ const About = () => (
                         Become a contributor <span>and grow</span>
                     </h2>
                     <p>
-                        DeSciWorld is a constantly evolving ecosystem with a broad scope
+                        DeSciConnect is a constantly evolving ecosystem with a broad scope
                         for its future direction. We encourage researchers, builders,
                         community leaders, artists and creators - anyone - to contribute
                         and find a place in the community. Join our Discord and get
