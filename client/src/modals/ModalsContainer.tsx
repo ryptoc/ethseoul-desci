@@ -1,4 +1,5 @@
 import ConnectWalletModal from './connectWallet/ConnectWalletModal';
+import CreateIpNftModal from './CreateIpNft';
 import CurrentOffersModal from './CurrentOffersModal';
 import RequestToContributeModal from './RequestToContributeModal';
 import ErrorModal from './status/ErrorModal';
@@ -15,6 +16,7 @@ const ModalsContainer = () => (
         <ConnectWalletModal />
         <CurrentOffersModal />
         <RequestToContributeModal />
+        <CreateIpNftModal />
     </>
 );
 

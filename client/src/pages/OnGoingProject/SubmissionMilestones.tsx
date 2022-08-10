@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import Button from '../../components/Button';
+import modalContext from '../../context/modal/modalContext';
 
 type Milestone = {
     milestone: number;
@@ -27,7 +29,29 @@ const milestones: Milestone[] = [
 ];
 
 const SubmissionComments = () => {
-    const isFunder = false;
+    const isFunder = true;
+
+    const { openModal, setModalData } = useContext(modalContext);
+
+    const unlockEscrow = async () => {
+        openModal('warningModal');
+        setModalData((prev) => ({
+            ...prev,
+            status: 'Notice',
+            message:
+                'You are about to unlock the Milestone Escrow. Please ensure that you have reviewed all documents and the milestone objectives are completed to a sufficient standard. This is a non-reversable decision and your funds will not be returned.',
+        }));
+    };
+
+    const markAsComplete = async () => {
+        openModal('warningModal');
+        setModalData((prev) => ({
+            ...prev,
+            status: 'Notice',
+            message:
+                'You have marked the current Milestone as “Complete”. This will allow the Funder to unlock the Milestone Funding. If the Funder rejects the current milestone progress, you must uncheck this box to continue uploading files.',
+        }));
+    };
 
     const renderStatus = (milestone: Milestone) => {
         if (milestone.status === 'completed') {
@@ -50,7 +74,9 @@ const SubmissionComments = () => {
             return (
                 <>
                     {milestone.markedAsComplete && (
-                        <Button variant='tertiary'>Unlock Escrow</Button>
+                        <Button variant='tertiary' onClick={unlockEscrow}>
+                            Unlock Escrow
+                        </Button>
                     )}
                     <Button variant='tertiary'>Review Documents</Button>
                 </>
@@ -59,7 +85,12 @@ const SubmissionComments = () => {
 
         return (
             milestone.status !== 'completed' && (
-                <Button variant='tertiary'>Submit to Review Committee</Button>
+                <>
+                    <Button variant='tertiary' onClick={markAsComplete}>
+                        Mark as Complete
+                    </Button>
+                    <Button variant='tertiary'>Submit to Review Committee</Button>
+                </>
             )
         );
     };

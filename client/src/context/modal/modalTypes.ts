@@ -12,6 +12,7 @@ export type Modals = {
     connectWalletModal: boolean;
     currentOffersModal: boolean;
     requestToContributeModal: boolean;
+    createIpNftModal: boolean;
 };
 
 export type ModalStateType = {
