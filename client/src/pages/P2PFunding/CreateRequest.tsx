@@ -16,6 +16,7 @@ import { parseUnits } from '@ethersproject/units';
 import errorContext from '../../context/error/errorContext';
 import useWeb3Storage from '../../hooks/web3/useWeb3Storage';
 import { getPlatformContract, getTokenContract } from '../../helpers/typechain';
+import useProposals from '../../hooks/web3/useProposals';
 
 type FormDataType = {
     title: string;
@@ -51,6 +52,8 @@ const CreateRequest = () => {
     const { requestType } = useParams();
 
     const { library, account } = useWeb3React();
+
+    const { update } = useProposals();
 
     const { openModal, closeModal, setModalData } = useContext(modalContext);
     const { setError } = useContext(errorContext);
@@ -152,10 +155,7 @@ const CreateRequest = () => {
             return false;
         }
 
-        if (
-            userBalance &&
-            toBigNumber(totalAmountRequired.toString(), 6).gt(userBalance)
-        ) {
+        if (userBalance && toBigNumber(totalAmountRequired.toString()).gt(userBalance)) {
             openModal('warningModal');
             setModalData((prev) => ({
                 ...prev,
@@ -205,6 +205,8 @@ const CreateRequest = () => {
                 );
 
                 await proposal.wait();
+
+                await update();
 
                 openModal('successModal');
                 setModalData((prev) => ({

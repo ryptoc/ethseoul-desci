@@ -47,10 +47,10 @@ const ProposalOutline = () => {
                     <div className='status'>
                         <span>{getProposalState(proposal?.state || 0)}</span>
                     </div>
-                    <div className='creator'>
-                        {formatAccount(proposal?.funder || AddressZero)}
+                    <div className='creator'>{proposal?.funder || AddressZero}</div>
+                    <div className='contributors'>
+                        {proposal?.researcherApplications.length} contributors
                     </div>
-                    <div className='contributors'>12 contributors</div>
                     <p className='description'>
                         {proposal?.description || 'Description'}
                     </p>
