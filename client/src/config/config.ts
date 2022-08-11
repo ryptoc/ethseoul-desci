@@ -11,8 +11,8 @@ export const config = {
         etherscan: 'https://etherscan.io',
     },
     addresses: {
-        ipnft: '0x17BB4d043dc2d94EbA3Cd22ccdfB3eed66a31Db6',
-        platform: '0x0284Cf5cA1F03dBF2c53c0F8699B96089C046b97',
+        ipnft: '0xD6dad06f2f9AdB38aa56f92282F01B96E43a6878',
+        platform: '0x701D740cf912C841f69673470CF173FE064DE657',
         mockToken: '0xB7e76E6C023073fE6AcFf4e04201D6a0862BBd89',
     },
 };

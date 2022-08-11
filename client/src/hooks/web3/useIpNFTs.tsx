@@ -26,7 +26,7 @@ const useIpNFTs = () => {
                 ?.filter(({ state }) => state === 2)
                 .map(({ id }) => id);
 
-            if (!proposalIds?.length) return;
+            if (!proposalIds?.length) return [];
 
             const tokenURIs = await Promise.all(
                 proposalIds.map(async (proposalID) => {
@@ -53,12 +53,12 @@ const useIpNFTs = () => {
                 })
             );
 
-            return baseData;
+            return baseData as IpNftType[];
         }
     );
 
     return {
-        ipNFTS: data as IpNftType[] | undefined,
+        ipNFTS: data,
         isLoading: !error && !data,
         error,
         update: mutate,
