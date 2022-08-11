@@ -1,0 +1,33 @@
+&.error-modal {
+    background: #fd8f36;
+
+    .content {
+        .status {
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: 700;
+            margin-top: 2.5rem;
+        }
+
+        .message {
+            font-size: 24px;
+            line-height: 30px;
+            font-family: $secondaryFont;
+            margin-top: 1rem;
+        }
+
+        & > button {
+            position: relative;
+            width: 230px;
+            background-color: #f1f1f1;
+            border: 1px solid black;
+            font-family: $secondaryFont;
+            font-size: 18px;
+            line-height: 30px;
+            top: unset;
+            right: unset;
+            margin-top: 1.68rem;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { Socials, SupportedConnectors } from '../../config/constants';
+import { Socials, SupportedConnectors, Tokens } from '../../config/constants';
 
 // socials
 import Discord from './social/Discord';
@@ -7,13 +7,8 @@ import Twitter from './social/Twitter';
 import Medium from './social/Medium';
 import Gitbook from './social/Gitbook';
 import LinkedIn from './social/LinkedIn';
-
-// modal
-export { default as CrossIcon } from './modal/Cross';
-export { default as ConnectWalletIcon } from './modal/ConnectWallet';
-export { default as ErrorIcon } from './modal/Error';
-export { default as SuccessIcon } from './modal/Success';
-export { default as WarningIcon } from './modal/Warning';
+import Filecoin from './social/Filecoin';
+import Polygon from './social/Polygon';
 
 // connectors
 import Metamask from './connectors/Metamask';
@@ -25,24 +20,47 @@ import Ledger from './connectors/Ledger';
 import Torus from './connectors/Torus';
 import Fortmatic from './connectors/Fortmatic';
 
+// tokens
+import Ether from './tokens/Ether';
+import UsdCoin from './tokens/UsdCoin';
+
+// modal
+export { default as CrossIcon } from './modal/Cross';
+export { default as ConnectWalletIcon } from './modal/ConnectWallet';
+export { default as ErrorIcon } from './modal/Error';
+export { default as SuccessIcon } from './modal/Success';
+export { default as WarningIcon } from './modal/Warning';
+export { default as SpinnerIcon } from './modal/Spinner';
+
 // general
 export { default as WalletIcon } from './general/Wallet';
 export { default as InfoRoundedIcon } from './general/InfoRounded';
+export { default as ChevronIcon } from './general/Chevron';
 
-type Icons = {
-    [x: string]: JSX.Element;
-};
+// layout
+export { default as HomeIcon } from './layout/Home';
+export { default as AboutIcon } from './layout/About';
+export { default as ContactIcon } from './layout/Contact';
 
-export const SocialIcons: Icons = {
+type Icons<T extends string | number> = Partial<Record<T, JSX.Element>>;
+
+export const SocialIcons: Icons<Socials> = {
     [Socials.DISCORD]: Discord(),
     [Socials.TELEGRAM]: Telegram(),
     [Socials.TWITTER]: Twitter(),
     [Socials.MEDIUM]: Medium(),
     [Socials.GITBOOK]: Gitbook(),
     [Socials.LINKEDIN]: LinkedIn(),
+    [Socials.FILECOIN]: Filecoin(),
+    [Socials.POLYGON]: Polygon(),
 };
 
-export const WalletConnectorIcons: Icons = {
+export const TokenIcons: Icons<Tokens> = {
+    [Tokens.ETH]: Ether(),
+    [Tokens.USDC]: UsdCoin(),
+};
+
+export const WalletConnectorIcons: Icons<SupportedConnectors> = {
     [SupportedConnectors.METAMASK]: Metamask(),
     [SupportedConnectors.WALLET_CONNECT]: WalletConnect(),
     [SupportedConnectors.COINBASE]: Coinbase(),

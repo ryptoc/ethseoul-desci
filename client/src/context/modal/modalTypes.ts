@@ -2,6 +2,7 @@ export type ModalDataTypes = {
     message: string;
     status: string;
     txHash: string;
+    data: any;
 };
 
 export type Modals = {
@@ -10,6 +11,10 @@ export type Modals = {
     warningModal: boolean;
     successModal: boolean;
     connectWalletModal: boolean;
+    currentOffersModal: boolean;
+    requestToContributeModal: boolean;
+    createIpNftModal: boolean;
+    submitMilestoneModal: boolean;
 };
 
 export type ModalStateType = {

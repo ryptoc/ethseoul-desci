@@ -1,0 +1,98 @@
+#ongoing-project {
+    margin-top: 5rem;
+
+    .container {
+        h1 {
+            max-width: 530px;
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+
+        h2 {
+            margin-top: 3.75rem;
+            font-size: 30px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+
+        .submission-overview {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 1.68rem;
+
+            .inner__left {
+                display: flex;
+                flex-direction: column;
+                font-size: 18px;
+                line-height: 30px;
+                font-family: $secondaryFont;
+            }
+
+            .inner__right {
+                margin-left: 3.75rem;
+
+                a.custom {
+                    width: 220px;
+
+                    span:not(.border) {
+                        padding: 0.5rem 1rem;
+                    }
+                }
+            }
+        }
+
+        .submission-details {
+            background-color: #efefef;
+            margin-top: 3.75rem;
+
+            .tabs-header-container {
+                padding-left: 0.5rem;
+                display: flex;
+                background-color: #fd8f36;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+
+                button {
+                    margin-top: 0.5rem;
+                    background-color: rgba(239, 239, 239, 0.7);
+                    font-weight: 700;
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                    color: rgba(0, 0, 0, 0.5);
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+
+                    &:last-of-type {
+                        margin-left: auto;
+                        margin-right: 0.5rem;
+                    }
+
+                    & + button {
+                        margin-left: 0.5rem;
+                    }
+
+                    &:hover {
+                        transform: none;
+                    }
+
+                    &.active {
+                        color: #fd8f36;
+                        background-color: #efefef;
+                    }
+                }
+            }
+
+            .tab-content {
+                padding: 1rem;
+
+                @import './submissionFiles';
+                @import './submissionMilestones';
+                @import './submissionIpNft';
+                @import './newSubmission';
+            }
+        }
+    }
+}

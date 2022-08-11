@@ -1,19 +1,42 @@
 button.custom,
 a.custom {
     width: 100%;
+    height: max-content;
     outline: none;
     border: none;
-    padding: 1rem;
-    font-size: 18px;
-    line-height: 28px;
-    border-radius: 5px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 64px;
-    transition: color 1s ease, background 1s ease, border-color 1s ease;
-    text-align: center;
+    max-width: 250px;
+    background: transparent;
+    position: relative;
+    padding: 0;
+
+    &:hover {
+        transform: scale(0.95);
+    }
+
+    span:not(.border) {
+        text-align: center;
+        transition: color 1s ease, background 1s ease, border-color 1s ease;
+        font-size: 18px;
+        line-height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 56px;
+        clip-path: polygon(7% 0%, 100% 1%, 100% 75%, 93% 100%, 0 100%, 0 25%);
+    }
+
+    span.border {
+        position: absolute;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+
+        clip-path: polygon(7% 0%, 100% 1%, 100% 75%, 93% 100%, 0 100%, 0 25%);
+    }
 
     &:disabled {
         cursor: not-allowed;
@@ -25,20 +48,40 @@ a.custom {
     }
 
     &.button-primary {
-        background-color: $buttonPrimary;
-        color: $accentColor;
+        span:not(.border) {
+            background-color: white;
+            color: $accentColor;
+        }
 
-        &:disabled {
-            background-color: $buttonPrimaryDisabled;
-            color: #9ba6b4;
+        span.border {
+            background-color: #051208;
         }
     }
 
     &.button-secondary {
-        background-color: $buttonSecondary;
+        filter: drop-shadow(2px 2px 0px $bgSecondary)
+            drop-shadow(3px 3px 0px $primaryColor);
+        span:not(.border) {
+            background-color: #f9dc5a;
+            color: $bgSecondary;
+        }
+
+        span.border {
+            display: none;
+        }
 
         &:disabled {
             background-color: $buttonSecondaryDisabled;
+        }
+    }
+
+    &.button-tertiary {
+        span.border {
+            display: none;
+        }
+
+        span:not(.border) {
+            clip-path: unset;
         }
     }
 }

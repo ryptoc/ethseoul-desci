@@ -1,0 +1,87 @@
+#ipnft-singular {
+    margin-top: 5rem;
+
+    & > .container {
+        .overview {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 3.75rem;
+
+            .inner__left {
+                width: 464px;
+                height: 464px;
+                background-color: rgba(0, 0, 0, 0.1);
+                justify-self: center;
+            }
+
+            .inner__right {
+                span,
+                p,
+                .awarded,
+                .researched-by {
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+
+                h1 {
+                    font-size: 48px;
+                    line-height: 48px;
+                    margin-top: 1.68rem;
+                }
+
+                p {
+                    margin: 1.68rem 0;
+                }
+            }
+        }
+    }
+
+    .ipnft-details {
+        margin-top: 3.75rem;
+
+        h2 {
+            font-size: 48px;
+            line-height: 48px;
+        }
+
+        .details {
+            margin-top: 1.68rem;
+            background: linear-gradient(
+                180deg,
+                rgba(206, 253, 92, 0) 0%,
+                rgba(117, 251, 76, 0.4) 0.01%,
+                rgba(206, 253, 92, 0) 100%
+            );
+            padding: 2rem;
+
+            .card {
+                background-color: white;
+                padding: 1.68rem 3.75rem;
+                display: flex;
+                align-items: center;
+                filter: drop-shadow(16px 16px 24px rgba(0, 48, 63, 0.08));
+                cursor: pointer;
+
+                & + .card {
+                    margin-top: 1.68rem;
+                }
+
+                .content {
+                    margin-left: 3.75rem;
+
+                    .title {
+                        font-size: 30px;
+                        line-height: 30px;
+                        font-weight: 700;
+                    }
+
+                    span {
+                        font-size: 18px;
+                        line-height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

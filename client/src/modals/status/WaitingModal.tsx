@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import modalContext from '../../context/modal/modalContext';
 import CustomModal from '../../components/CustomModal';
+import { SpinnerIcon } from '../../assets/icons';
 
 const WaitingModal: React.FC = () => {
     const { modalData } = useContext(modalContext);
@@ -8,16 +9,19 @@ const WaitingModal: React.FC = () => {
     return (
         <CustomModal
             modalName='waitingModal'
-            className='waiting-modal'
-            overlayClassName='waiting-modal'
+            className='status-modal waiting-modal'
+            overlayClassName='status-modal'
             shouldCloseOnOverlayClick={false}
         >
-            <div className='status'>Please Wait!</div>
-            <div className='spinner'>spinning icon...</div>
-            <div
-                className='message'
-                dangerouslySetInnerHTML={{ __html: modalData?.message }}
-            />
+            <div className='content'>
+                <div className='spinner-container'>
+                    <SpinnerIcon />
+                </div>
+                <div
+                    className='status'
+                    dangerouslySetInnerHTML={{ __html: modalData?.status }}
+                />
+            </div>
         </CustomModal>
     );
 };

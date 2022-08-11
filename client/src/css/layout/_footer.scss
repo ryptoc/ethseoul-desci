@@ -1,0 +1,40 @@
+footer {
+    margin-top: 3.75rem;
+    grid-column: 2/3;
+    background: $bgSecondary;
+    color: white;
+    padding: 2.5rem 0;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: unset;
+
+        nav {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                margin: 0.5rem 0;
+            }
+        }
+
+        .socials {
+            a {
+                transition: transform 0.3s ease;
+                display: inline-block;
+                margin: 0 1rem;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+
+                svg {
+                    width: 48px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}

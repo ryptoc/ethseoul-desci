@@ -1,0 +1,254 @@
+#create-request {
+    margin-top: 5rem;
+
+    .container {
+        input,
+        textarea {
+            background-color: transparent !important;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 48px;
+
+            span {
+                text-transform: capitalize;
+            }
+        }
+
+        & > p {
+            font-size: 18px;
+            line-height: 30px;
+            font-family: $secondaryFont;
+            margin-top: 1.68rem;
+            max-width: 750px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3.75rem;
+
+            label {
+                display: flex;
+                flex-direction: column;
+
+                & + label {
+                    margin-top: 1.68rem;
+                }
+
+                span {
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+
+                input {
+                    margin-top: 0.3rem;
+                    height: 64px;
+                    border-radius: 5px;
+                    font-family: $secondaryFont;
+                    font-size: 48px;
+                }
+
+                textarea {
+                    min-height: 130px;
+                    height: 130px;
+                    max-height: 130px;
+                    resize: none;
+                    border-radius: 5px;
+                    margin-top: 0.3rem;
+                    font-size: 24px;
+                    padding: 0.5rem;
+                }
+            }
+
+            .request-details {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 2.5rem;
+                margin-top: 1.68rem;
+
+                .research-duration {
+                    position: relative;
+
+                    &::after {
+                        content: 'month(s)';
+                        position: absolute;
+                        right: 0.5rem;
+                        bottom: 0.5rem;
+                    }
+                    input {
+                        padding-right: 1.68rem;
+                    }
+                }
+            }
+
+            .milestone-timeline {
+                margin-top: 1.68rem;
+
+                & > span {
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+
+                .timelines {
+                    margin-top: 1rem;
+
+                    button {
+                        height: 40px;
+                        border: 1px solid black;
+                        border-radius: 8px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        margin-top: 1.68rem;
+                    }
+
+                    .timeline {
+                        display: grid;
+                        grid-template-columns:
+                            minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 4fr)
+                            max-content;
+                        gap: 2.5rem;
+                        align-items: center;
+
+                        & + .timeline {
+                            margin-top: 1rem;
+                        }
+
+                        label {
+                            margin-top: unset;
+
+                            span {
+                                font-family: $secondaryFont;
+                                font-size: 14px;
+                                line-height: 16px;
+                            }
+
+                            input {
+                                margin-top: 0.3rem;
+                                height: 64px;
+                                border-radius: 5px;
+                                font-family: $secondaryFont;
+                                font-size: 48px;
+                            }
+
+                            textarea {
+                                height: 64px;
+                                min-height: 64px;
+                                max-height: 64px;
+                                resize: none;
+                                font-family: $secondaryFont;
+                                font-size: 24px;
+                                padding: 0.5rem;
+                            }
+                        }
+
+                        .cross-icon {
+                            width: 40px;
+                            height: 40px;
+                            margin-top: 1rem;
+
+                            svg {
+                                width: 100%;
+                                height: auto;
+                                cursor: pointer;
+
+                                rect {
+                                    fill: $bgSecondary;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .proposed-timeline {
+                margin-top: 1.68rem;
+                margin-bottom: 0.3rem;
+
+                & > span {
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+
+                .timeline-container {
+                    margin: 5rem auto;
+                    width: 90%;
+
+                    .timeline-progress {
+                        height: 2px;
+                        background-color: black;
+                        display: flex;
+                        align-items: center;
+                        position: relative;
+
+                        & > div {
+                            position: absolute;
+
+                            &:not(.start) {
+                                .info-container {
+                                    position: absolute;
+                                    top: -50%;
+                                    transform: translateY(-50%);
+                                    right: -20px;
+                                }
+
+                                span {
+                                    position: absolute;
+                                    top: 20px;
+                                    font-size: 18px;
+                                    line-height: 30px;
+                                    font-family: $secondaryFont;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                }
+                            }
+                        }
+
+                        .start {
+                            left: 0;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                width: 16px;
+                                height: 16px;
+                                background-color: black;
+                                border-radius: 50%;
+                                top: -8px;
+                            }
+
+                            span {
+                                position: absolute;
+                                top: 5px;
+                                font-size: 18px;
+                                line-height: 30px;
+                                font-family: $secondaryFont;
+                                left: 50%;
+                                transform: translateX(-50%);
+                            }
+                        }
+
+                        .end {
+                            right: 0;
+                        }
+                    }
+                }
+            }
+
+            .proposal-file-uploads {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 0.4fr);
+                gap: 3.75rem;
+            }
+
+            .action-container {
+                width: 100%;
+                margin: 3.75rem auto 0 auto;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+        }
+    }
+}

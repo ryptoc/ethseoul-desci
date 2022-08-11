@@ -1,0 +1,25 @@
+#faq {
+    margin-top: 5rem;
+
+    .container {
+        h2 {
+            font-size: 48px;
+            line-height: 48px;
+        }
+
+        .faq-container {
+            width: 95%;
+            margin: 1.68rem auto 0 auto;
+
+            .accordion {
+                .accordion-question svg {
+                    transition: transform 0.3s ease;
+                }
+
+                &.collapsed .accordion-question svg {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+    }
+}

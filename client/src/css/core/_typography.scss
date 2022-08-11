@@ -5,13 +5,13 @@ body {
 input,
 button,
 a {
-    font-family: $primaryFont;
+    font-family: $secondaryFont;
 }
 
 h2 {
     font-size: 24px;
     font-weight: 200;
-    color: $primaryColor;
+    color: $accentColor;
     transition: color 1s ease;
     line-height: 38px;
 
@@ -23,7 +23,7 @@ h2 {
 h3 {
     font-size: 18px;
     font-weight: 400;
-    color: $primaryColor;
+    color: $accentColor;
     transition: color 1s ease;
 
     @include breakpoint(phablet) {

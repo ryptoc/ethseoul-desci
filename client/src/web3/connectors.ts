@@ -10,31 +10,32 @@ import { TorusConnector } from '@web3-react/torus-connector';
 import { FortmaticConnector } from '@web3-react/fortmatic-connector';
 
 export const RPC_URLS = {
-    [SupportedChains.MAINNET]: `https://spool-test.solidant.io`,
-    // [SupportedChains.MAINNET]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`,
+    [SupportedChains.MAINNET]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`,
     [SupportedChains.ROPSTEN]: `https://ropsten.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`,
     [SupportedChains.RINKEBY]: `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`,
     [SupportedChains.GOERLI]: `https://goerli.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`,
     [SupportedChains.KOVAN]: `https://kovan.infura.iov3/${process.env.REACT_APP_INFURA_ID}`,
+    [SupportedChains.POLYGON_TEST]: `https://matic-mumbai.chainstacklabs.com`,
 };
 
 const POLLING_INTERVAL = 12000;
 
 export const networkConnector = new NetworkConnector({
     urls: {
-        [SupportedChains.MAINNET]: 'https://cloudflare-eth.com/',
+        [SupportedChains.POLYGON_TEST]: RPC_URLS[SupportedChains.POLYGON_TEST],
+        // [SupportedChains.MAINNET]: 'https://cloudflare-eth.com/',
         // [SupportedChains.MAINNET]: RPC_URLS[SupportedChains.MAINNET],
         // [networks.ROPSTEN]: RPC_URLS[networks.ROPSTEN],
         // [SupportedChains.RINKEBY]: RPC_URLS[SupportedChains.RINKEBY],
         // [networks.GOERLI]: RPC_URLS[networks.GOERLI],
         // [networks.KOVAN]: RPC_URLS[networks.KOVAN],
     },
-    defaultChainId: SupportedChains.MAINNET,
+    defaultChainId: SupportedChains.POLYGON_TEST,
 });
 
 export const injected = new InjectedConnector({
     supportedChainIds: [
-        SupportedChains.MAINNET,
+        SupportedChains.POLYGON_TEST,
         // networks.ROPSTEN,
         // SupportedChains.RINKEBY,
         // networks.GOERLI,
@@ -50,7 +51,7 @@ export const walletConnect = new WalletConnectConnector({
 
 export const walletlink = new WalletLinkConnector({
     url: RPC_URLS[SupportedChains.MAINNET],
-    appName: 'app.spool.fi',
+    appName: 'xyz',
 });
 
 export const trezor = new TrezorConnector({
@@ -58,7 +59,7 @@ export const trezor = new TrezorConnector({
     url: RPC_URLS[SupportedChains.MAINNET],
     pollingInterval: POLLING_INTERVAL,
     manifestEmail: 'developer@xyz.com',
-    manifestAppUrl: 'https://app.spool.fi',
+    manifestAppUrl: 'xyz',
 });
 
 export const portis = new PortisConnector({

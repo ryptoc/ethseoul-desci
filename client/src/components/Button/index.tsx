@@ -1,10 +1,10 @@
-import React, { forwardRef, ReactNode, useContext } from 'react';
+import React, { forwardRef, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import ExternalLink from '../ExternalLink';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     type?: 'button' | 'submit' | 'reset' | undefined;
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'tertiary';
     className?: string;
     interalLink?: string;
     externalLink?: string;
@@ -31,7 +31,8 @@ const Button = forwardRef<any, ButtonProps>(
         if (interalLink) {
             return (
                 <Link to={interalLink} className={buttonClassName}>
-                    {children}
+                    <span className='border' />
+                    <span>{children}</span>
                 </Link>
             );
         }
@@ -39,14 +40,16 @@ const Button = forwardRef<any, ButtonProps>(
         if (externalLink) {
             return (
                 <ExternalLink to={externalLink} className={buttonClassName}>
-                    {children}
+                    <span className='border' />
+                    <span>{children}</span>
                 </ExternalLink>
             );
         }
 
         return (
             <button ref={ref} type={type} className={buttonClassName} {...rest}>
-                {children}
+                <span className='border' />
+                <span>{children}</span>
             </button>
         );
     }

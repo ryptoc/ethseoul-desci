@@ -6,7 +6,7 @@ import {
 } from '@web3-react/walletconnect-connector';
 import React, { ReactNode, useCallback, useContext, useEffect, useReducer } from 'react';
 import { SupportedConnectors } from '../../config/constants';
-import useIsMounted from '../../hooks/useIsMounted';
+import useAutoConnect from '../../hooks/web3/useAutoConnect';
 import { networkConnector } from '../../web3/connectors';
 import modalContext from '../modal/modalContext';
 import ConnectionContext from './connectionContext';
@@ -20,8 +20,6 @@ const ConnectionState: React.FC<Props> = ({ children }) => {
     const { error, activate, deactivate, setError } = useWeb3React();
 
     const { openModal, closeModal, setModalData } = useContext(modalContext);
-
-    const isMounted = useIsMounted();
 
     const resetWalletConnector = useCallback((connector: any) => {
         if (
@@ -78,23 +76,6 @@ const ConnectionState: React.FC<Props> = ({ children }) => {
     const [state, dispatch] = useReducer(connectionReducer, initialState);
 
     const { activeConnector } = state;
-
-    // useEffect(() => {
-    //     (async () => {
-    //         if (
-    //             connector &&
-    //             connector instanceof SafeAppConnector &&
-    //             (await connector.isSafeApp()) &&
-    //             chainId &&
-    //             chainId !== SupportedChains.MAINNET
-    //         ) {
-    //             isMounted() &&
-    //                 setError(
-    //                     new UnsupportedChainIdError(chainId, [SupportedChains.MAINNET])
-    //                 );
-    //         }
-    //     })();
-    // }, [connector, chainId, setError, isMounted]);
 
     useEffect(() => {
         if (!error) return;
@@ -159,11 +140,13 @@ export default ConnectionState;
 const AttempInitializeConnection = () => {
     const { active, activate } = useWeb3React();
 
+    const tried = useAutoConnect();
+
     useEffect(() => {
-        if (!active) {
+        if (tried && !active) {
             activate(networkConnector);
         }
-    }, [active, activate]);
+    }, [tried, active, activate]);
 
     return null;
 };

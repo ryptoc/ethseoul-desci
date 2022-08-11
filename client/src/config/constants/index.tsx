@@ -4,6 +4,7 @@ export enum SupportedChains {
     RINKEBY = 4,
     GOERLI = 5,
     KOVAN = 42,
+    POLYGON_TEST = 80001,
 }
 
 export enum SupportedConnectors {
@@ -17,6 +18,12 @@ export enum SupportedConnectors {
     FORTMATIC = 'Formatic',
 }
 
+export enum Tokens {
+    BTC = 'BTC',
+    ETH = 'ETH',
+    USDC = 'USDC',
+}
+
 export enum Socials {
     DISCORD = 'DISCORD',
     TWITTER = 'TWITTER',
@@ -24,6 +31,8 @@ export enum Socials {
     MEDIUM = 'MEDIUM',
     GITBOOK = 'GITBOOK',
     LINKEDIN = 'LINKEDIN',
+    FILECOIN = 'FILECOIN',
+    POLYGON = 'POLYGON',
 }
 
 export enum TimeConversions {

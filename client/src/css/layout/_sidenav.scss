@@ -1,0 +1,63 @@
+.sidenav {
+    width: 81px;
+    height: 100vh;
+
+    grid-row: 1/4;
+    position: relative;
+
+    .container {
+        border-right: 2px solid $primaryColor;
+        box-shadow: 8px 8px 8px rgba(0, 48, 63, 0.1);
+        background: $accentColor;
+        position: fixed;
+        padding: 0;
+        max-width: unset;
+        height: 100%;
+        width: 81px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        #logo {
+            margin-top: 1rem;
+        }
+
+        nav {
+            margin-top: 3.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            a {
+                margin: 0.5rem 0;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        .socials {
+            display: flex;
+            flex-direction: column;
+            margin-top: 3rem;
+
+            a {
+                margin: 0.5rem 0;
+                transition: transform 0.3s ease;
+                width: 25px;
+                height: 25px;
+
+                svg {
+                    width: 100%;
+                    height: auto;
+                }
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+}

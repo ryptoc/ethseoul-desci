@@ -1,0 +1,91 @@
+#ipnfts {
+    margin-top: 5rem;
+
+    .container {
+        .hero {
+            display: flex;
+            justify-content: space-between;
+
+            .inner__left {
+                max-width: 780px;
+
+                h1 {
+                    font-size: 48px;
+                    line-height: 48px;
+                }
+
+                p {
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                    margin-top: 1.68rem;
+                }
+            }
+        }
+
+        input[type='search'] {
+            max-width: 720px;
+            width: 100%;
+            height: 40px;
+            padding: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .nft-container {
+            margin-top: 1.68rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            row-gap: 1.68rem;
+            column-gap: 3.75rem;
+
+            .card {
+                background: #fafdfd;
+                box-shadow: 16px 16px 24px rgba(0, 48, 63, 0.08);
+                padding: 0 1.68rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                position: relative;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.15);
+                }
+
+                .category {
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                    font-weight: 700;
+                    margin-top: 0.5rem;
+
+                    span {
+                        font-weight: 400;
+                    }
+                }
+
+                .title {
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                    font-weight: 700;
+                    margin-top: 1rem;
+                }
+
+                .creator {
+                    font-style: italic;
+                    font-size: 16px;
+                    line-height: 30px;
+                }
+
+                .mint-date {
+                    margin-top: 2.5rem;
+                    margin-bottom: 1rem;
+                    font-family: $secondaryFont;
+                    font-size: 18px;
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}

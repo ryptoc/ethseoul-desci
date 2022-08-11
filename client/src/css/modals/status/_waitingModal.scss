@@ -1,0 +1,47 @@
+&.waiting-modal {
+    background: $accentColor;
+
+    .content {
+        .spinner-container {
+            width: max-content;
+            height: max-content;
+            position: relative;
+            margin-top: 2.5rem;
+
+            &::before {
+                content: '';
+                width: 81px;
+                height: 81px;
+                position: absolute;
+                top: -11px;
+                left: 0;
+                border-radius: 50%;
+                box-shadow: 0px 4px 30px -1px rgba(0, 0, 0, 0.25);
+                border: 12px solid rgba(255, 255, 255, 0.1);
+            }
+
+            svg {
+                width: 93px;
+                height: 93px;
+                transform-origin: 57% 44%;
+                animation: spin 1s infinite;
+            }
+        }
+
+        .status {
+            margin-top: 2.5rem;
+            max-width: 290px;
+            color: white;
+
+            @include breakpoint(mobile) {
+                max-width: unset;
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

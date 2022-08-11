@@ -1,0 +1,57 @@
+#ongoing-requests {
+    margin-top: 5rem;
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3.75rem;
+
+        .request-card {
+            & + .request-card {
+                margin-top: 2.5rem;
+            }
+
+            .request-detail .inner__right {
+                display: none;
+            }
+        }
+
+        .inner__left,
+        .inner__right {
+            h2 {
+                font-size: 48px;
+                line-height: 48px;
+            }
+
+            & > div {
+                margin-top: 1.68rem;
+
+                .request-card {
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        }
+
+        .inner__left .funding-requests {
+            background: #e0dcc9;
+            padding: 2.5rem;
+
+            .request-card .request-detail .min-trust-score::after {
+                background-color: #e0dcc9;
+            }
+        }
+
+        .inner__right .research-requests {
+            background: #f9dc5a;
+            padding: 2.5rem;
+
+            .request-card .request-detail .min-trust-score::after {
+                background-color: #f9dc5a;
+            }
+        }
+    }
+}

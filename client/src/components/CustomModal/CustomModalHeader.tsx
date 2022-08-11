@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { CrossIcon } from '../../assets/icons';
+import Button from '../Button';
 
 type Props = {
     title: ReactNode;
@@ -9,7 +10,9 @@ type Props = {
 const CustomModalHeader: React.FC<Props> = ({ title, onClose }) => (
     <div className='header'>
         <span>{title}</span>
-        <CrossIcon onClick={onClose} />
+        <Button onClick={onClose}>
+            <CrossIcon />
+        </Button>
     </div>
 );
 

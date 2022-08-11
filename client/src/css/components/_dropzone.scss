@@ -1,0 +1,49 @@
+.dropzone-container {
+    margin-top: 1.68rem;
+
+    & > span {
+        font-size: 16px;
+        line-height: 30px;
+        font-family: $secondaryFont;
+    }
+
+    .drop-area {
+        border: 1px dashed;
+        border-radius: 5px;
+
+        .dropzone {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem 0;
+            cursor: pointer;
+
+            p {
+                margin-top: 0.5rem;
+            }
+
+            span {
+                color: #4f46e5;
+                font-weight: 700;
+            }
+        }
+
+        aside {
+            border-top: 1px dashed;
+            padding: 1rem;
+
+            ul li svg {
+                width: 35px;
+                height: auto;
+                margin-left: 0.5rem;
+                cursor: pointer;
+                vertical-align: middle;
+
+                rect {
+                    fill: black;
+                }
+            }
+        }
+    }
+}

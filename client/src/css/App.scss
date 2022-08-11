@@ -18,9 +18,39 @@
 @import './components/button';
 @import './components/dropdown';
 @import './components/infoPopUp';
-@import './components/select';
 @import './components/textInput';
+@import './components/collapsibleArea';
+@import './components/accordion';
+@import './components/dropzone';
+@import './components/select';
 
 //**********************************
 // Pages
 // *********************************
+@import './pages/Dashboard/hero';
+@import './pages/Dashboard/benefits';
+@import './pages/Dashboard/requestsOverview';
+@import './pages/Dashboard/faq';
+@import './pages/Contact/contact';
+@import './pages/P2PFunding/p2pfunding';
+@import './pages/P2PFunding/browseRequests';
+@import './pages/P2PFunding/createRequests';
+@import './pages/P2PFunding/onGoingRequests';
+@import './pages/OnGoingProject/onGoingProject';
+@import './pages/About/about';
+@import './pages/IPNFTS/ipnfts';
+@import './pages/IPNFTS/ipnftSingular';
+@import './pages/ProposalOutline/proposalOutline';
+
+//**********************************
+// Layout
+// *********************************
+@import './layout/main';
+@import './layout/sidenav';
+@import './layout/header';
+@import './layout/footer';
+
+//**********************************
+// Modals
+// *********************************
+@import './modals/modals';
