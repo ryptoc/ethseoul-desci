@@ -1,5 +1,5 @@
 import { Tab, TabBody, TabHeader, Tabs } from '../../components/Tabs';
-import ProposalGallery from './ProposalGallery';
+// import ProposalGallery from './ProposalGallery';
 import ProposalOverview from './ProposalOverview';
 import ProposalMilestone from './ProposalMilestone';
 
@@ -9,13 +9,13 @@ const ProposalDetails = () => {
             <div className='tab-header-row'>
                 <TabHeader>
                     <Tab>Overview</Tab>
-                    <Tab>Gallery</Tab>
+                    {/* <Tab>Gallery</Tab> */}
                     <Tab>Milestone</Tab>
                 </TabHeader>
             </div>
             <TabBody>
                 <ProposalOverview />
-                <ProposalGallery />
+                {/* <ProposalGallery /> */}
                 <ProposalMilestone />
             </TabBody>
         </Tabs>

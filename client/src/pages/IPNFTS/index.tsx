@@ -1,92 +1,15 @@
+import { AddressZero } from '@ethersproject/constants';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import IntellectualProperty from '../../assets/images/intellectual_property.png';
-
-type NftsType = {
-    title: string;
-    creator: string;
-    category: string;
-    mintDate: number;
-};
-
-const nfts: NftsType[] = [
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-    {
-        title: 'Field Research in Mississipi River',
-        creator: 'jmisslor',
-        category: 'Geography',
-        mintDate: 1660156446,
-    },
-];
+import { formatAccount } from '../../helpers/formats';
+import useIpNFTs from '../../hooks/web3/useIpNFTs';
 
 const IpNfts = () => {
     const [searchTerm, setSearchTerm] = useState('');
+
+    const { ipNFTS, isLoading } = useIpNFTs();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
@@ -118,25 +41,34 @@ const IpNfts = () => {
                     onChange={handleChange}
                 />
                 <div className='nft-container'>
-                    {nfts
-                        .filter(
-                            (data) =>
-                                data.title.includes(searchTerm) ||
-                                data.creator.includes(searchTerm)
-                        )
-                        .map((nft, index) => (
-                            <Link to={'/ipnfts/2'} key={index} className='card'>
-                                <div className='category'>
-                                    Category: <span>{nft.category}</span>
-                                </div>
-                                <div className='title'>{nft.title}</div>
-                                <div className='creator'>{nft.creator}</div>
-                                <div className='mint-date'>
-                                    Mint Date:{' '}
-                                    {moment.unix(nft.mintDate).format('DD/MM/YYYY')}
-                                </div>
-                            </Link>
-                        ))}
+                    {!isLoading
+                        ? ipNFTS && ipNFTS.length
+                            ? ipNFTS
+                                  .filter(
+                                      (data) =>
+                                          data.name.includes(searchTerm) ||
+                                          data.owner.includes(searchTerm)
+                                  )
+                                  .map((nft, index) => (
+                                      <Link
+                                          to={`/ipnfts/${nft.proposalID}`}
+                                          key={index}
+                                          className='card'
+                                      >
+                                          <div className='title'>{nft.name}</div>
+                                          <div className='creator'>
+                                              {formatAccount(nft.owner || AddressZero)}
+                                          </div>
+                                          <div className='mint-date'>
+                                              Mint Date:{' '}
+                                              {moment
+                                                  .unix(nft.createdOn)
+                                                  .format('DD/MM/YYYY')}
+                                          </div>
+                                      </Link>
+                                  ))
+                            : 'No ipNFTs found...'
+                        : 'Loading...'}
                 </div>
             </div>
         </section>

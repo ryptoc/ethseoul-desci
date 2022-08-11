@@ -1,37 +1,42 @@
-import { Tokens } from '../../config/constants';
+import { ProposalType } from '../../hooks/web3/useProposals';
 import RequestCard from './RequestCard';
 
-export interface BrowseRequest {
-    category: 'Experiment' | 'Sponsor' | 'Partnership' | 'Consultation';
-    title: string;
-    creator: string;
-    minTrustScore: number;
-    description: string;
-    fundingAmount: number;
-    fundingAsset: Tokens;
-}
-
 interface BrowseRequestsProps {
-    requests: BrowseRequest[];
+    requests: ProposalType[] | undefined;
     className?: string;
+    isLoading: boolean;
 }
 
-const BrowseRequests: React.FC<BrowseRequestsProps> = ({ requests, className }) => {
+const BrowseRequests: React.FC<BrowseRequestsProps> = ({
+    requests,
+    className,
+    isLoading,
+}) => {
+    const filterCompletedRequests = requests?.length
+        ? requests.filter((request) => request.state !== 2)
+        : [];
+
     return (
         <section id='browse-requests'>
             <div className={`container ${className ?? ''}`}>
                 <h2>BROWSE REQUESTS</h2>
                 {/* eslint-disable-next-line */}
                 <p>// researchers looking for funding //</p>
-                <div className='request-container'>
-                    {requests.map((request, index) => (
-                        <RequestCard
-                            to='/proposal-outline/2'
-                            request={request}
-                            key={index}
-                        />
-                    ))}
-                </div>
+                {isLoading ? (
+                    'Loading requests...'
+                ) : (
+                    <div className='request-container'>
+                        {requests && filterCompletedRequests.length
+                            ? filterCompletedRequests.map((request, index) => (
+                                  <RequestCard
+                                      to={`/proposal-outline/${request.id}`}
+                                      request={request}
+                                      key={index}
+                                  />
+                              ))
+                            : 'No requests found...'}
+                    </div>
+                )}
             </div>
         </section>
     );

@@ -1,13 +1,21 @@
-import React, { FormEvent, useContext, useState } from 'react';
+import React, { FormEvent, useContext, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CrossIcon } from '../../assets/icons';
 import TextInput from '../../components/TextInput';
-import { preventOverflow, sleep } from '../../web3/utils';
+import { calculateMargin, preventOverflow, toBigNumber } from '../../web3/utils';
 import Button from '../../components/Button';
 import Timeline from '../../components/Timeline';
 import Dropzone from '../../components/Dropzone';
 import modalContext from '../../context/modal/modalContext';
-// import useUserBalance from '../../hooks/web3/useUserBalance';
+import useUserBalance from '../../hooks/web3/useUserBalance';
+import useIsApproved from '../../hooks/web3/useIsApproved';
+import { config } from '../../config/config';
+import { useWeb3React } from '@web3-react/core';
+import { MaxUint256 } from '@ethersproject/constants';
+import { parseUnits } from '@ethersproject/units';
+import errorContext from '../../context/error/errorContext';
+import useWeb3Storage from '../../hooks/web3/useWeb3Storage';
+import { getPlatformContract, getTokenContract } from '../../helpers/typechain';
 
 type FormDataType = {
     title: string;
@@ -42,14 +50,76 @@ const CreateRequest = () => {
 
     const { requestType } = useParams();
 
+    const { library, account } = useWeb3React();
+
     const { openModal, closeModal, setModalData } = useContext(modalContext);
+    const { setError } = useContext(errorContext);
+
+    const client = useWeb3Storage();
 
     const [pdfs, setPdfs] = useState<File[]>([]);
     const [images, setImages] = useState<File[]>([]);
 
+    const totalAmountRequired = useMemo(
+        () =>
+            formData.timeline.reduce(
+                (total, { releaseAmount }) => (total += +releaseAmount),
+                0
+            ),
+        [formData.timeline]
+    );
+
     const navigate = useNavigate();
 
-    // const userBalance = useUserBalance('0x566368d78DBdEc50F04b588E152dE3cEC0d5889f');
+    const userBalance = useUserBalance(config.addresses.mockToken);
+
+    const { isApproved, mutate } = useIsApproved(
+        config.addresses.mockToken,
+        config.addresses.platform,
+        totalAmountRequired.toString()
+    );
+
+    const approve = async () => {
+        try {
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Please wait as your approval is being confirmed',
+            }));
+            openModal('waitingModal');
+
+            const contract = getTokenContract(library.getSigner());
+
+            let useExact = false;
+
+            const estimatedGas = await contract.estimateGas
+                .approve(config.addresses.platform, MaxUint256)
+                .catch(() => {
+                    // general fallback for tokens who restrict approval amounts
+                    useExact = true;
+
+                    return contract.estimateGas.approve(
+                        config.addresses.platform,
+                        parseUnits(totalAmountRequired.toString())
+                    );
+                });
+
+            const approve = await contract.approve(
+                config.addresses.platform,
+                useExact ? parseUnits(totalAmountRequired.toString()) : MaxUint256,
+                {
+                    gasLimit: calculateMargin(estimatedGas),
+                }
+            );
+
+            await approve.wait();
+
+            await mutate();
+        } catch (error) {
+            setError(error);
+        } finally {
+            closeModal('waitingModal');
+        }
+    };
 
     const validate = () => {
         if (!pdfs.length) {
@@ -72,11 +142,6 @@ const CreateRequest = () => {
             return false;
         }
 
-        const totalAmountRequired = formData.timeline.reduce(
-            (total, { releaseAmount }) => (total += +releaseAmount),
-            0
-        );
-
         if (totalAmountRequired <= 0) {
             openModal('warningModal');
             setModalData((prev) => ({
@@ -87,18 +152,18 @@ const CreateRequest = () => {
             return false;
         }
 
-        // if (
-        //     userBalance &&
-        //     toBigNumber(totalAmountRequired.toString(), 6).gt(userBalance)
-        // ) {
-        //     openModal('warningModal');
-        //     setModalData((prev) => ({
-        //         ...prev,
-        //         status: 'Notice',
-        //         message: 'Insufficient USDC',
-        //     }));
-        //     return false;
-        // }
+        if (
+            userBalance &&
+            toBigNumber(totalAmountRequired.toString(), 6).gt(userBalance)
+        ) {
+            openModal('warningModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Notice',
+                message: 'Insufficient USDC',
+            }));
+            return false;
+        }
 
         return true;
     };
@@ -106,33 +171,55 @@ const CreateRequest = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (validate()) {
-            openModal('waitingModal');
-            setModalData((prev) => ({
-                ...prev,
-                status: 'Please wait as your IPFS storage is being created',
-            }));
+        if (validate() && process.env.REACT_APP_WEB3_STORAGE_API && client && account) {
+            try {
+                openModal('waitingModal');
+                setModalData((prev) => ({
+                    ...prev,
+                    status: 'Please wait as your IPFS storage is being created',
+                }));
 
-            await sleep(3000);
+                const pdfCID = await client.put(pdfs);
+                const imagesCID = await client.put(images);
 
-            setModalData((prev) => ({
-                ...prev,
-                status: 'Please wait as your transaction is being confirmed',
-            }));
+                setModalData((prev) => ({
+                    ...prev,
+                    status: 'Please wait as your transaction is being confirmed',
+                }));
 
-            await sleep(2000);
+                const platformContract = getPlatformContract(library.getSigner());
 
-            closeModal('waitingModal');
+                const proposal = await platformContract.createResearchProposal(
+                    formData.title,
+                    formData.description,
+                    account,
+                    pdfCID,
+                    imagesCID,
+                    formData.timeline
+                        .sort((a, b) => +a.milestone - +b.milestone)
+                        .map(({ comments, releaseAmount, milestone }) => ({
+                            comment: comments,
+                            payoutAmount: parseUnits(releaseAmount),
+                            percentage: milestone,
+                        }))
+                );
 
-            openModal('successModal');
-            setModalData((prev) => ({
-                ...prev,
-                status: 'Success!',
-                message:
-                    'Your proposal has been submitted. Registered researchers can now apply to contribute. Review applications on the Proposal page.',
-            }));
+                await proposal.wait();
 
-            navigate('/ongoing-requests');
+                openModal('successModal');
+                setModalData((prev) => ({
+                    ...prev,
+                    status: 'Success!',
+                    message:
+                        'Your proposal has been submitted. Registered researchers can now apply to contribute. Review applications on the Proposal page.',
+                }));
+
+                navigate('/ongoing-requests');
+            } catch (error) {
+                setError(error);
+            } finally {
+                closeModal('waitingModal');
+            }
         }
     };
 
@@ -191,10 +278,10 @@ const CreateRequest = () => {
                     Create a <span>{requestType ?? ''}</span> Request
                 </h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                    porttitor euismod ligula a consequat. Mauris non porta ex. Phasellus
-                    pretium tincidunt ornare. Nulla neque nisl, auctor vel orci efficitur,
-                    facilisis condimentum nunc.
+                    This form will be published on the Research Request page where
+                    registered Researchers can apply to win the right to carry out this
+                    research goal. The Milestones are each secured by an escrow vault that
+                    only you have the capacity to unlock.
                 </p>
                 <form onSubmit={handleSubmit}>
                     <label>
@@ -327,17 +414,22 @@ const CreateRequest = () => {
                             multiple={false}
                         />
                         <Dropzone
-                            title='Insert images for proposal gallery here:'
+                            title='Insert proposal display image for ipNFT:'
                             description='Drag and drop in PNG/JPG Form:'
                             files={images}
                             setFiles={(files) => setImages(files)}
                             accept={{
                                 'image/png': ['.png', '.jpeg', '.jpg'],
                             }}
+                            multiple={false}
                         />
                     </div>
                     <div className='action-container'>
-                        <Button type='submit'>Submit</Button>
+                        {isApproved ? (
+                            <Button type='submit'>Submit</Button>
+                        ) : (
+                            <Button onClick={approve}>Approve</Button>
+                        )}
                     </div>
                 </form>
             </div>

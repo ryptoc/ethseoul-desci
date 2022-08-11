@@ -61,6 +61,7 @@
                 display: flex;
                 align-items: center;
                 filter: drop-shadow(16px 16px 24px rgba(0, 48, 63, 0.08));
+                cursor: pointer;
 
                 & + .card {
                     margin-top: 1.68rem;

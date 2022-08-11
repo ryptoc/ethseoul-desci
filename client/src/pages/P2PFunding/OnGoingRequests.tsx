@@ -1,44 +1,24 @@
-import { Tokens } from '../../config/constants';
-import { BrowseRequest } from './BrowseRequests';
+import { useWeb3React } from '@web3-react/core';
+import useProposals from '../../hooks/web3/useProposals';
 import RequestCard from './RequestCard';
 
-const fundingRequests: BrowseRequest[] = [
-    {
-        title: 'Analysis of Water Samples from Mississippi River',
-        category: 'Experiment',
-        creator: 'jmisslor',
-        description:
-            'As part of an analysis of the differences in water quality across major global rivers, we are offering a significant bounty to local participants in our study. This bounty specifically pertains to the taking of and subsequent analysis of samples of Mississippi River water over a 6 month period between March 2023 and September 2023...',
-        minTrustScore: 10,
-        fundingAmount: 3000,
-        fundingAsset: Tokens.USDC,
-    },
-    {
-        title: 'Effects of new Energy Drink on Cognitive Performance',
-        category: 'Sponsor',
-        creator: 'jmisslor',
-        description:
-            'Wingspan Energy is a newly conceived energy drink by Joja Corporation. We are offering to sponsor an independent double blind study that evaluates the effects of our energy drink on human cognitive performance compared to  regular caffeinated beverages...',
-        minTrustScore: 20,
-        fundingAmount: 25000,
-        fundingAsset: Tokens.USDC,
-    },
-];
-
-const researchRequests: BrowseRequest[] = [
-    {
-        title: 'Study on behavioral differences across cultures (South Korea)',
-        category: 'Partnership',
-        creator: 'jmisslor',
-        description:
-            'PhD students from Humboldt University looking to conduct a global study on differences in human behavior in certain societal situations. Seeking partners to conduct our research by replicating our methodology across different cultures. ',
-        minTrustScore: 30,
-        fundingAmount: 30000,
-        fundingAsset: Tokens.USDC,
-    },
-];
-
 const OnGoingRequests = () => {
+    const { proposals, isLoading } = useProposals();
+
+    const { account } = useWeb3React();
+
+    const fundingProposals = proposals
+        ? proposals.filter(
+              (proposal) => proposal.funder === account && proposal.state !== 2
+          )
+        : [];
+
+    const researchProposals = proposals
+        ? proposals.filter(
+              (proposal) => proposal.researcher === account && proposal.state !== 2
+          )
+        : [];
+
     return (
         <>
             <section id='p2p-funding-requests'>
@@ -58,25 +38,33 @@ const OnGoingRequests = () => {
                     <div className='inner__left'>
                         <h2>Funding Requests</h2>
                         <div className='funding-requests'>
-                            {fundingRequests.map((request, index) => (
-                                <RequestCard
-                                    to='/ongoing-project/2'
-                                    request={request}
-                                    key={index}
-                                />
-                            ))}
+                            {isLoading
+                                ? 'Loading proposals...'
+                                : proposals && fundingProposals.length
+                                ? fundingProposals.map((request, index) => (
+                                      <RequestCard
+                                          to={`/ongoing-project/${request.id}`}
+                                          request={request}
+                                          key={index}
+                                      />
+                                  ))
+                                : 'No funding requests...'}
                         </div>
                     </div>
                     <div className='inner__right'>
                         <h2>Research Requests</h2>
                         <div className='research-requests'>
-                            {researchRequests.map((request, index) => (
-                                <RequestCard
-                                    to='/ongoing-project/2'
-                                    request={request}
-                                    key={index}
-                                />
-                            ))}
+                            {isLoading
+                                ? 'Loading proposals...'
+                                : proposals && researchProposals.length
+                                ? researchProposals.map((request, index) => (
+                                      <RequestCard
+                                          to={`/ongoing-project/${request.id}`}
+                                          request={request}
+                                          key={index}
+                                      />
+                                  ))
+                                : 'No research requests...'}
                         </div>
                     </div>
                 </div>

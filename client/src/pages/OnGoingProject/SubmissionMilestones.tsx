@@ -1,94 +1,99 @@
-import { useContext } from 'react';
+import { formatUnits } from '@ethersproject/units';
+import { useWeb3React } from '@web3-react/core';
+import { BigNumber } from 'ethers';
+import { useContext, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import Button from '../../components/Button';
+import useTabsState from '../../components/Tabs/useTabsState';
+import errorContext from '../../context/error/errorContext';
 import modalContext from '../../context/modal/modalContext';
+import { formatUSD } from '../../helpers/formats';
+import useProposals from '../../hooks/web3/useProposals';
 
 type Milestone = {
-    milestone: number;
-    releaseAmount: number;
-    status: 'completed' | 'ongoing';
-    markedAsComplete?: boolean;
+    comment: string;
+    milestoneResearchCid: string;
+    payoutAmount: BigNumber;
+    percentage: BigNumber;
+    state: number;
 };
 
-const milestones: Milestone[] = [
-    {
-        milestone: 1,
-        releaseAmount: 3000,
-        status: 'completed',
-    },
-    {
-        milestone: 2,
-        releaseAmount: 2000,
-        status: 'completed',
-    },
-    {
-        milestone: 3,
-        releaseAmount: 5000,
-        status: 'ongoing',
-        markedAsComplete: true,
-    },
-];
-
 const SubmissionComments = () => {
-    const isFunder = true;
+    const { account } = useWeb3React();
+
+    const { projectID } = useParams();
+
+    const { proposals } = useProposals();
 
     const { openModal, setModalData } = useContext(modalContext);
 
-    const unlockEscrow = async () => {
-        openModal('warningModal');
-        setModalData((prev) => ({
-            ...prev,
-            status: 'Notice',
-            message:
-                'You are about to unlock the Milestone Escrow. Please ensure that you have reviewed all documents and the milestone objectives are completed to a sufficient standard. This is a non-reversable decision and your funds will not be returned.',
-        }));
-    };
+    const { setError } = useContext(errorContext);
 
-    const markAsComplete = async () => {
-        openModal('warningModal');
-        setModalData((prev) => ({
-            ...prev,
-            status: 'Notice',
-            message:
-                'You have marked the current Milestone as “Complete”. This will allow the Funder to unlock the Milestone Funding. If the Funder rejects the current milestone progress, you must uncheck this box to continue uploading files.',
-        }));
+    const { setTabIndex } = useTabsState();
+
+    const proposalFound = useMemo(
+        () =>
+            proposals
+                ? proposals.find((proposal) => proposal.id.toString() === projectID)
+                : undefined,
+        [proposals, projectID]
+    );
+
+    const isFunder = proposalFound?.funder === account;
+
+    const unlockEscrow = async () => {
+        try {
+            openModal('submitMilestoneModal');
+            setModalData((prev) => ({
+                ...prev,
+                data: projectID,
+            }));
+        } catch (error) {
+            setError(error);
+        }
     };
 
     const renderStatus = (milestone: Milestone) => {
-        if (milestone.status === 'completed') {
+        if (milestone.state === 3) {
             return '// COMPLETE //';
         }
 
-        if (!isFunder) return '// IN REVIEW //';
+        if (!isFunder && milestone.milestoneResearchCid) return '// IN REVIEW //';
 
-        return milestone.markedAsComplete
+        if (milestone.state === 0) return '';
+
+        return milestone.milestoneResearchCid
             ? '// RESEARCHER HAS MARKED COMPLETE //'
             : '// WAITING TO BE MARKED COMPLETE //';
     };
 
     const renderButtons = (milestone: Milestone) => {
         if (isFunder) {
-            if (milestone.status === 'completed') {
-                return <Button variant='tertiary'>View Milestone Documents</Button>;
+            if (milestone.state === 3) {
+                return (
+                    <Button variant='tertiary' onClick={() => setTabIndex(0)}>
+                        View Documents
+                    </Button>
+                );
             }
 
             return (
                 <>
-                    {milestone.markedAsComplete && (
+                    {milestone.milestoneResearchCid && (
                         <Button variant='tertiary' onClick={unlockEscrow}>
                             Unlock Escrow
                         </Button>
                     )}
-                    <Button variant='tertiary'>Review Documents</Button>
+                    <Button variant='tertiary' onClick={() => setTabIndex(0)}>
+                        Review Documents
+                    </Button>
                 </>
             );
         }
 
         return (
-            milestone.status !== 'completed' && (
+            milestone.state !== 3 && (
                 <>
-                    <Button variant='tertiary' onClick={markAsComplete}>
-                        Mark as Complete
-                    </Button>
                     <Button variant='tertiary'>Submit to Review Committee</Button>
                 </>
             )
@@ -97,15 +102,15 @@ const SubmissionComments = () => {
 
     return (
         <div className='tab-content submission-milestones'>
-            {milestones.map((milestone, index) => (
+            {proposalFound?.proposalMilestones.map((milestone, index) => (
                 <div className='milestone' key={index}>
                     <div className='inner__left'>
-                        <div className='milestone-number'>
-                            Milestone {milestone.milestone}
-                        </div>
+                        <div className='milestone-number'>Milestone {index + 1}</div>
                         <div className='release-amount'>
-                            Amount {milestone.status === 'ongoing' ? 'to be' : ''}{' '}
-                            unlocked: <strong>{milestone.releaseAmount} USDC</strong>
+                            Amount {milestone.state === 3 ? '' : 'to be'} unlocked:{' '}
+                            <strong>
+                                {formatUSD(formatUnits(milestone.payoutAmount))} USDC
+                            </strong>
                         </div>
                         <div className='status'>{renderStatus(milestone)}</div>
                     </div>

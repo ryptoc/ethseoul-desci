@@ -4,6 +4,7 @@ export enum SupportedChains {
     RINKEBY = 4,
     GOERLI = 5,
     KOVAN = 42,
+    POLYGON_TEST = 80001,
 }
 
 export enum SupportedConnectors {

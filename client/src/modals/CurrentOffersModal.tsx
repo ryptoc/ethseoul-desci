@@ -1,54 +1,70 @@
-import { AddressZero } from '@ethersproject/constants';
+import { useWeb3React } from '@web3-react/core';
 import { useContext, useState } from 'react';
 import Button from '../components/Button';
 import CustomModal from '../components/CustomModal';
+import errorContext from '../context/error/errorContext';
 import modalContext from '../context/modal/modalContext';
 import { formatAccount } from '../helpers/formats';
-import { sleep } from '../web3/utils';
+import { getPlatformContract } from '../helpers/typechain';
+import useProposals from '../hooks/web3/useProposals';
 
-const initialState = [
-    {
-        user: AddressZero,
-        comments: 'abc',
-    },
-    {
-        user: AddressZero,
-        comments: 'bcd',
-    },
-];
+type OffersType = {
+    user: string;
+};
 
 const CurrentOffersModal = () => {
-    const { openModal, closeModal, setModalData } = useContext(modalContext);
+    const { openModal, closeModal, setModalData, modalData } = useContext(modalContext);
+    const { setError } = useContext(errorContext);
 
     const onClose = () => closeModal('currentOffersModal');
 
-    const [offers, setOffers] = useState(initialState);
+    const { library } = useWeb3React();
 
-    const accept = async () => {
-        openModal('warningModal');
-        setModalData((prev) => ({
-            ...prev,
-            status: 'Notice',
-            message:
-                'You have accepted a request from a Researcher and the request is under DeScientist Committee Review.',
-        }));
+    const { proposals } = useProposals();
 
-        await sleep(3000);
+    const proposalFound = proposals
+        ? proposals.find(({ id }) => id.toString() === modalData.data)
+        : undefined;
 
-        closeModal('warningModal');
+    const [offers, setOffers] = useState<OffersType[]>();
 
-        openModal('successModal');
-        setModalData((prev) => ({
-            ...prev,
-            status: 'Congratulations!',
-            message:
-                'The DeScientist Review Commitee has approved your proposal and researchers have begun.',
-        }));
-        onClose();
+    const accept = async (researcher: string) => {
+        if (!proposalFound) return;
+        try {
+            openModal('waitingModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Please wait as your transacation is being confirmed.',
+            }));
+
+            const platformContract = getPlatformContract(library.getSigner());
+
+            const assign = await platformContract.assignResearcher(
+                proposalFound.id,
+                researcher
+            );
+
+            await assign.wait();
+
+            openModal('successModal');
+            setModalData((prev) => ({
+                ...prev,
+                status: 'Success',
+                message:
+                    'You have assigned a Researcher and researchers will soon begun.',
+            }));
+            onClose();
+        } catch (error) {
+            setError(error);
+        } finally {
+            closeModal('waitingModal');
+        }
     };
 
     const reject = (offerIndex: number) => {
-        setOffers((prev) => prev.filter((_, index) => offerIndex !== index));
+        if (!offers) return;
+
+        setOffers((prev) => prev!.filter((_, index) => offerIndex !== index));
     };
 
     return (
@@ -63,16 +79,17 @@ const CurrentOffersModal = () => {
                 <div className='offers-container'>
                     <div className='row header'>
                         <div>User</div>
-                        <div>Comments</div>
                         <div>Action</div>
                     </div>
-                    {offers.length ? (
-                        offers.map(({ comments, user }, index) => (
+                    {proposalFound && proposalFound.researcherApplications.length ? (
+                        proposalFound.researcherApplications.map((user, index) => (
                             <div className='row' key={index}>
                                 <div>{formatAccount(user)}</div>
-                                <div>{comments}</div>
                                 <div>
-                                    <Button variant='tertiary' onClick={accept}>
+                                    <Button
+                                        variant='tertiary'
+                                        onClick={() => accept(user)}
+                                    >
                                         Accept
                                     </Button>
                                     {' | '}

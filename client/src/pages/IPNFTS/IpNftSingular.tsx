@@ -1,33 +1,44 @@
 import { AddressZero } from '@ethersproject/constants';
-import { formatAccount } from '../../helpers/formats';
 import ipnft_singular_1 from '../../assets/images/ipnft_singular_1.png';
-import ipnft_singular_2 from '../../assets/images/ipnft_singular_2.png';
 import ipnft_singular_3 from '../../assets/images/ipnft_singular_3.png';
+import { useParams } from 'react-router-dom';
+import useIpNFTs from '../../hooks/web3/useIpNFTs';
+import ExternalLink from '../../components/ExternalLink';
 
 const IpNftSingular = () => {
+    const { ipnftID } = useParams();
+
+    const { ipNFTS } = useIpNFTs();
+
+    const found = ipNFTS?.length
+        ? ipNFTS.find(({ proposalID }) => proposalID.toString() === ipnftID)
+        : undefined;
+
+    const openResearches = () => {
+        found?.research.forEach((research) => {
+            window.open(`https://${research.replace('ipfs://', '')}.ipfs.dweb.link/`);
+        });
+    };
+
     return (
         <section id='ipnft-singular'>
             <div className='container'>
                 <div className='overview'>
-                    <div className='inner__left'></div>
+                    <div className='inner__left'>
+                        <img
+                            src={`https://${found?.image.replace(
+                                'ipfs://',
+                                ''
+                            )}.ipfs.dweb.link/`}
+                            alt='NFT'
+                        />
+                    </div>
                     <div className='inner__right'>
                         <span>Network: Polygon Testnet</span>
-                        <h1>Microbes</h1>
-                        <p>
-                            Heterogenous mix of manually manipulated and generative art
-                            from the micro-molecular world; creative interpretations of
-                            real-life scientific metadata. Whilst most are aware ofthe
-                            microbial world found on and in us all, few know of the true
-                            beauty, diversity and chaos present. 999 unique works, created
-                            with genuine scientific research as source material;
-                            contextually educational, visually stimulating and thought
-                            provoking.
-                        </p>
+                        <h1>{found?.name || 'NFT Name'}</h1>
+                        <p>{found?.description || 'NFT Descriptipn'}</p>
                         <div className='awarded'>
-                            Awarded to: {formatAccount(AddressZero)}
-                        </div>
-                        <div className='researched-by'>
-                            Researched by: VisionDAO Biology Researchers
+                            Owner: {found?.owner || AddressZero}
                         </div>
                     </div>
                 </div>
@@ -38,7 +49,7 @@ const IpNftSingular = () => {
                 </div>
                 <div className='details'>
                     <div className='container'>
-                        <div className='card'>
+                        <div className='card' onClick={openResearches}>
                             <img src={ipnft_singular_1} alt='ipnft_singular_1' />
                             <div className='content'>
                                 <div className='title'>
@@ -47,7 +58,7 @@ const IpNftSingular = () => {
                                 <span>Stored on IPFS</span>
                             </div>
                         </div>
-                        <div className='card'>
+                        {/* <div className='card'>
                             <img src={ipnft_singular_2} alt='ipnft_singular_2' />
                             <div className='content'>
                                 <div className='title'>
@@ -55,14 +66,20 @@ const IpNftSingular = () => {
                                 </div>
                                 <span>Stored on IPFS</span>
                             </div>
-                        </div>
-                        <div className='card'>
+                        </div> */}
+                        <ExternalLink
+                            to={`https://${found?.proposal.replace(
+                                'ipfs://',
+                                ''
+                            )}.ipfs.dweb.link/`}
+                            className='card'
+                        >
                             <img src={ipnft_singular_3} alt='ipnft_singular_3' />
                             <div className='content'>
                                 <div className='title'>Original Proposal Document</div>
                                 <span>Stored on IPFS</span>
                             </div>
-                        </div>
+                        </ExternalLink>
                     </div>
                 </div>
             </div>

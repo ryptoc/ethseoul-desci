@@ -1,7 +1,9 @@
+import { useWeb3React } from '@web3-react/core';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '../../components/Button';
 import modalContext from '../../context/modal/modalContext';
+import { formatAccount } from '../../helpers/formats';
 
 const navLinks = [
     {
@@ -21,6 +23,8 @@ const navLinks = [
 const Header = () => {
     const { openModal } = useContext(modalContext);
 
+    const { account } = useWeb3React();
+
     return (
         <header>
             <div className='container'>
@@ -35,7 +39,7 @@ const Header = () => {
                     variant='secondary'
                     onClick={() => openModal('connectWalletModal')}
                 >
-                    Connect wallet ↗
+                    {account ? formatAccount(account) : 'Connect wallet ↗'}
                 </Button>
             </div>
         </header>

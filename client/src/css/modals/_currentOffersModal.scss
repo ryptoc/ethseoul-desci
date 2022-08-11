@@ -8,8 +8,7 @@
 
         .heading {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
 
             .title {
                 font-size: 30px;
@@ -25,7 +24,7 @@
 
         .offers-container {
             display: grid;
-            grid-template-columns: max-content minmax(0, 1fr) max-content;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             align-items: center;
             justify-items: center;
             border-top: 1px solid rgba(0, 0, 0, 0.3);

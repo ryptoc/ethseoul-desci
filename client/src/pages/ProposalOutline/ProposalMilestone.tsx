@@ -1,32 +1,41 @@
-const milestones = [
-    {
-        milestone: 100,
-        releaseAmount: 10000,
-        comments: 'Synthesise protein amyloids',
-    },
-    {
-        milestone: 50,
-        releaseAmount: 5000,
-        comments: 'Gather carbon data',
-    },
-];
+import { formatUnits } from '@ethersproject/units';
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
+import { formatUSD } from '../../helpers/formats';
+import useProposals from '../../hooks/web3/useProposals';
 
 const ProposalMilestone = () => {
+    const { proposals } = useProposals();
+
+    const { projectID } = useParams();
+
+    const proposalFound = useMemo(
+        () =>
+            proposals
+                ? proposals.find((proposal) => proposal.id.toString() === projectID)
+                : undefined,
+        [proposals, projectID]
+    );
     return (
         <div className='container tab-content proposal-milestone'>
-            {milestones.map((milestone) => (
-                <div className='milestone'>
+            {proposalFound?.proposalMilestones.map((milestone, index) => (
+                <div className='milestone' key={index}>
                     <label className='percent-completion'>
-                        <span>Milestone (%)</span>
-                        <input value={milestone.milestone} readOnly />
+                        <span>
+                            Milestone (%) {milestone.state === 3 ? '- Completed' : ''}
+                        </span>
+                        <input value={milestone.percentage.toString()} readOnly />
                     </label>
                     <label className='release-amount'>
                         <span>USDC to be released</span>
-                        <input value={milestone.releaseAmount} readOnly />
+                        <input
+                            value={formatUSD(formatUnits(milestone.payoutAmount))}
+                            readOnly
+                        />
                     </label>
                     <label className='comments'>
                         <span>Comments</span>
-                        <textarea value={milestone.comments} readOnly />
+                        <textarea value={milestone.comment} readOnly />
                     </label>
                 </div>
             ))}

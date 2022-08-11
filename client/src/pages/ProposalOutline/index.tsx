@@ -5,16 +5,37 @@ import ClockIcon from '../../assets/images/clock.png';
 import UsersIcon from '../../assets/images/users.png';
 import Button from '../../components/Button';
 import ProposalDetails from './ProposalDetails';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import modalContext from '../../context/modal/modalContext';
+import { useWeb3React } from '@web3-react/core';
+import useProposals from '../../hooks/web3/useProposals';
+import { useParams } from 'react-router-dom';
+import { formatAccount, formatUSD } from '../../helpers/formats';
+import { AddressZero } from '@ethersproject/constants';
+import { formatUnits } from '@ethersproject/units';
+import { getProposalState } from '../../helpers/typechain';
 
 const ProposalOutline = () => {
-    const { openModal } = useContext(modalContext);
+    const { openModal, setModalData } = useContext(modalContext);
+
+    const { account } = useWeb3React();
+
+    const { projectID } = useParams();
+
+    const { proposals } = useProposals();
+
+    const proposal = proposals
+        ? proposals.find(({ id }) => id.toString() === projectID)
+        : undefined;
+
+    useEffect(() => {
+        if (!projectID) return;
+
+        setModalData((prev) => ({ ...prev, data: projectID }));
+    }, [projectID, setModalData]);
 
     const viewOffers = () => openModal('currentOffersModal');
     const requestToContribute = () => openModal('requestToContributeModal');
-
-    const isFunder = false;
 
     return (
         <section id='proposal-outline'>
@@ -22,19 +43,16 @@ const ProposalOutline = () => {
                 <h1>Research Request Proposal Outline</h1>
                 <hr />
                 <div className='details'>
-                    <div className='title'>
-                        Study on behavioral differences across cultures (South Korea)
-                    </div>
+                    <div className='title'>{proposal?.title || 'Title'}</div>
                     <div className='status'>
-                        <span>Under Negotiation</span>
+                        <span>{getProposalState(proposal?.state || 0)}</span>
                     </div>
-                    <div className='creator'>jmisslor</div>
+                    <div className='creator'>
+                        {formatAccount(proposal?.funder || AddressZero)}
+                    </div>
                     <div className='contributors'>12 contributors</div>
                     <p className='description'>
-                        PhD students from Humboldt University looking to conduct a global
-                        study on differences in human behavior in certain societal
-                        situations. Seeking partners to conduct our research by
-                        replicating our methodology across different cultures.
+                        {proposal?.description || 'Description'}
                     </p>
                     <div className='proposal-meta'>
                         <div className='date'>
@@ -51,17 +69,21 @@ const ProposalOutline = () => {
                         </div>
                     </div>
                     <div className='user-offer'>
-                        <span>Your Offer</span>
+                        <span>Offer</span>
                         <div className='offer-amount'>
                             <div className='asset'>
                                 <span>USDC</span>
-                                <span className='amount'>10000</span>
+                                <span className='amount'>
+                                    {formatUSD(
+                                        formatUnits(proposal?.researchAmount || '0') || 0
+                                    )}
+                                </span>
                             </div>
                             {TokenIcons[Tokens.USDC]}
                         </div>
                     </div>
                     <div className='action-container'>
-                        {isFunder ? (
+                        {proposal?.funder === account ? (
                             <Button variant='secondary' onClick={viewOffers}>
                                 View offers
                             </Button>

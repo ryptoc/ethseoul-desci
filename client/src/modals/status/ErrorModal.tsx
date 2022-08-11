@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import modalContext from '../../context/modal/modalContext';
 import CustomModal from '../../components/CustomModal';
-import { CrossIcon, ErrorIcon } from '../../assets/icons';
 
 const ErrorModal: React.FC = () => {
     const { modalData, closeModal } = useContext(modalContext);
@@ -10,15 +9,17 @@ const ErrorModal: React.FC = () => {
     return (
         <CustomModal
             modalName='errorModal'
-            overlayClassName='error-modal'
-            className='error-modal'
+            className='status-modal error-modal'
+            overlayClassName='status-modal error-modal'
         >
-            <button type='button' onClick={onClose}>
-                <CrossIcon />
-            </button>
-            <ErrorIcon />
-            <div className='status'>Error!</div>
-            <div className='message'>{modalData.message}</div>
+            <div className='content'>
+                <div className='status'>Error!</div>
+                <div
+                    className='message'
+                    dangerouslySetInnerHTML={{ __html: modalData.message }}
+                />
+                <button onClick={onClose}>Confirm</button>
+            </div>
         </CustomModal>
     );
 };

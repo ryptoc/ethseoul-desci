@@ -16,6 +16,7 @@ const ModalState: React.FC<Props> = ({ children }) => {
         currentOffersModal: false,
         requestToContributeModal: false,
         createIpNftModal: false,
+        submitMilestoneModal: false,
     };
 
     const [modal, setModal] = useState(initialState);
@@ -24,6 +25,7 @@ const ModalState: React.FC<Props> = ({ children }) => {
             'The DeScientist Review Commitee has approved your proposal and researchers have begun.',
         status: 'Congratulations!',
         txHash: '',
+        data: '',
     });
 
     const openModal = useCallback((name: keyof Modals): void => {

@@ -6,6 +6,7 @@ import {
 } from '@web3-react/walletconnect-connector';
 import React, { ReactNode, useCallback, useContext, useEffect, useReducer } from 'react';
 import { SupportedConnectors } from '../../config/constants';
+import useAutoConnect from '../../hooks/web3/useAutoConnect';
 import { networkConnector } from '../../web3/connectors';
 import modalContext from '../modal/modalContext';
 import ConnectionContext from './connectionContext';
@@ -139,11 +140,13 @@ export default ConnectionState;
 const AttempInitializeConnection = () => {
     const { active, activate } = useWeb3React();
 
+    const tried = useAutoConnect();
+
     useEffect(() => {
-        if (!active) {
+        if (tried && !active) {
             activate(networkConnector);
         }
-    }, [active, activate]);
+    }, [tried, active, activate]);
 
     return null;
 };
