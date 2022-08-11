@@ -1,0 +1,9 @@
+# artifacts
+node_modules
+/build
+/cache
+/coverage
+/coverage.json
+
+# config
+/.env
