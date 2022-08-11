@@ -37,18 +37,19 @@ const config: HardhatUserConfig = {
         ],
     },
     networks: {
-        rinkeby: {
-            url: process.env.RINKEBY_URL || "",
-            accounts: process.env.RINKEBY_PRIVATE_KEY !== undefined ? [process.env.RINKEBY_PRIVATE_KEY] : [],
+        polygon: {
+            url: process.env.NETWORK_URL || "",
+            accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
         },
         polygonMumbai: {
-            url: process.env.RINKEBY_URL || "",
-            accounts: process.env.RINKEBY_PRIVATE_KEY !== undefined ? [process.env.RINKEBY_PRIVATE_KEY] : [],
+            url: process.env.NETWORK_URL || "",
+            accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
         },
     },
     etherscan: {
         apiKey: {
-            polygonMumbai: `${process.env.ETHERSCAN_API_KEY}`,
+            polygon: `${process.env.POLYGONSCAN_API_KEY}`,
+            polygonMumbai: `${process.env.POLYGONSCAN_API_KEY}`,
         }
     },
 };
