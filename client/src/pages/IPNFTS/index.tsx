@@ -24,10 +24,8 @@ const IpNfts = () => {
                     <div className='inner__left'>
                         <h1>Intellectual Property NFTs</h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Integer porttitor euismod ligula a consequat. Mauris non porta
-                            ex. Phasellus pretium tincidunt ornare. Nulla neque nisl,
-                            auctor vel orci efficitur, facilisis condimentum nunc.
+                            Browse all of the ipNFTs produce on the DeSciConnect platform
+                            here.
                         </p>
                     </div>
                     <div className='inner__right'>
