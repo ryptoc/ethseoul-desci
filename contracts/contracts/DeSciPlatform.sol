@@ -585,7 +585,7 @@ contract DeSciPlatform {
     function _nonEmptyCid(string calldata cid) private pure {
         require(
             bytes(cid).length > 0,
-            "DeSciPlatform::_nonEmptyCid: Only proposal funder."
+            "DeSciPlatform::_nonEmptyCid: CID cannot be an empty string."
         );
     }
 

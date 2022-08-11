@@ -99,7 +99,7 @@ describe.only("DeSciPlatform", function () {
 
             // RESEARCHER: submit milestona as a researcher, index 0
 
-            await deSciPlatform.connect(researcher).submitMilestone(0, 0, "");
+            await deSciPlatform.connect(researcher).submitMilestone(0, 0, "aaa");
 
             // FUNDER: confirm milestone, index 0
 
@@ -107,7 +107,7 @@ describe.only("DeSciPlatform", function () {
 
             // RESEARCHER: submit milestona as a researcher, index 1
 
-            await deSciPlatform.connect(researcher).submitMilestone(0, 1, "");
+            await deSciPlatform.connect(researcher).submitMilestone(0, 1, "ipfs://a123");
 
             // FUNDER: confirm milestone, index 1
             // ipNFT is created
