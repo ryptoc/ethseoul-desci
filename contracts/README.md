@@ -1,10 +1,9 @@
-# Sample project contracts
+# DeSci Connect contracts
 
-The sample project sets boilerplate for solidity development with hardhat.
+The DeSci Connect platform consists of 2 main contracts, DeSciPlatform and IpNFT.
 
-It also contains PiggyBank contract with tests and deploy script.
-
-Check the [development](#development) section for details about various commands and for deployment and verification procedure.
+**DeSciPlatform** has the logic to controll the research flow.
+**IpNFT** is an extended ERC721 contract that holds the informaton of intellectual property rights of the research.
 
 ## Development
 
